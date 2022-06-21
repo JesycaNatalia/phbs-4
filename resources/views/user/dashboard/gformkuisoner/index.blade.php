@@ -26,7 +26,8 @@
             <div class="col">
                 <table>
                     <tr>
-                        <td>{{ $index++ }}. {{ $kuisoner->pertanyaan }}</td>
+                        <!-- <input type="hidden" name="kuisoner_id" value="{{$kuisoner->id}}"> -->
+                        <td>{{ $index++ }}. {{ $kuisoner->pertanyaan }} {{$kuisoner->id}}</td>
                     </tr>
                     <tr>
                         <td>
@@ -70,6 +71,7 @@
             </div>
         </div>
     </div>
+    <!-- <input type="hidden" name="jenispemantauan_id" value="{{$kuisoner->ppemantuan_id}}"> -->
     @endforeach
     <button type="submit" class="btn btn-block btn-info">Kirim</button>
 </form>

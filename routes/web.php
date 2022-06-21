@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdashboardController;
 use App\Http\Controllers\PantauanController;
 use App\Http\Controllers\PilihPemantauanController;
+use App\Http\Controllers\UpilihPemantauanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,5 +50,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('gform', GformController::class);
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
+        Route::resource('upilihpemantauan', UpilihPemantauanController::class);
     });
+
+    Route::get('/getPemantauan/{id}', [GformController::class, 'getPemantauan']);
 });

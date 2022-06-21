@@ -140,8 +140,12 @@
                         <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Kuisoner</span>
                     </a>
-                    <ul class="menu-content" style="">
+                    <!-- <ul class="menu-content" style="">
                         <li class=""><a class="d-flex align-items-center" href="{{ route('user.dashboard.gform.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Gform Kuisoner</span></a>
+                        </li>
+                    </ul> -->
+                    <ul class="menu-content" style="">
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('user.dashboard.upilihpemantauan.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Pilih Pemantauan</span></a>
                         </li>
                     </ul>
                 </li>
