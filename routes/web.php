@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KuisonerController;
 use App\Http\Controllers\IsiKuisonerController;
 use App\Http\Controllers\BulanController;
-// use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\GformController;
 use App\Http\Controllers\UlaporanKuisonerController;
 use App\Http\Controllers\DashboardController;
@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('pantauan', PantauanController::class);
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
+        Route::resource('grafik', GrafikController::class);
     });
 
     Route::prefix('dashboard')->name('user.dashboard.')->group(function () {
