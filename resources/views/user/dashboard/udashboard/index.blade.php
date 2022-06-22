@@ -55,11 +55,11 @@
                     $rata_rata = 0;
                     foreach($respon_users as $respon_user){
                         $rata_rata = $rata_rata + $respon_user->total_skor;
-                        $rata_rata = $rata_rata / $respon_users->count();
                     }
+                    $rata_rata = $rata_rata / $respon_users->count();
                     @endphp
                     <center>
-                        <h4>Rata-Rata </h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
+                        <h4>Rata-Rata  </h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
                         <hr>
                         <h3>{{ $rata_rata }}</h3>
                     </center>
