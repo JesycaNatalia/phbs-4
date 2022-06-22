@@ -10,6 +10,7 @@
 
 @php
     $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id); //ini aku taroh sini karna di view gabisa dikirim datanya untuk peruser
+    
 @endphp
 
 @if($status != null)
@@ -53,10 +54,16 @@
                 <div class="stats-info">
                     @php 
                     $rata_rata = 0;
+                    $respon_total = 0;
+                    if($respon_users->count() == 0){
+                        $respon_total = 1;
+                    } else {
+                        $respon_total = $respon_users->count();
+                    }
                     foreach($respon_users as $respon_user){
                         $rata_rata = $rata_rata + $respon_user->total_skor;
                     }
-                    $rata_rata = $rata_rata / $respon_users->count();
+                    $rata_rata = $rata_rata / $respon_total;
                     @endphp
                     <center>
                         <h4>Rata-Rata  </h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
@@ -79,8 +86,10 @@
                 <br>
                 <div class="stats-info">
                     @php 
+                    
                     $total_skor = $respon_users->last()->total_skor;
-                    $perbandingan = ($kuisoner * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+                    $perbandingan = 1;
+                    // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;
                     @endphp
                     {{-- kode diatas untuk menghitung nilai sehat dan tidak --}}
                     @if($total_skor > $perbandingan )
@@ -124,13 +133,22 @@
     @php 
     $sehat = 0;
     $belum_sehat = 0;
+    $perbandingan = ($kuisoner->count() * 3) / 2;
     foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat 
-        $perbandingan = ($kuisoner * 3) / 2;
-        if($all_respon_user->total_skor > $perbandingan){
+        $total_skor_user = 0;
+        foreach($all_respon_users as $keluarga_respon){
+            if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
+                $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
+            }
+        }
+        if($total_skor_user > $perbandingan){
             $sehat++;
         } else {
             $belum_sehat++;
         }
+        // echo $kuisoner->count().'>'.$total_skor_user. '<br>';
+        
+        // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;   
     }
 
     $total_warga = $sehat + $belum_sehat;

@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $bulan = Bulan::orderBy('id', 'desc')->first();
         $all_respon_user['all_respon_users'] = ResponUser::get();
         // $respon_user['respon_users'] = ResponUser::where('user_id', Auth::user()->id)->get(); //ini gabisa dikirim di view karna $data cuma bisa 1
-        $kuisoner = Kuisoner::count();
+        $kuisoner = Kuisoner::get();
         $check_isi_bulan = ResponUser::where([['bulan_id', $bulan->id], ['kartu_keluarga_id', Auth::user()->kartu_keluarga_id]])->first(); //ngambil data respon user buat check berapa kali sudah ngisi
         $status = '';
         if ($check_isi_bulan == null) {

@@ -32,33 +32,30 @@ $oktober = 0;
 $november = 0;
 $desember = 0;
 foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat 
-    $perbandingan = ($kuisoner * 3) / 2;
-    if($all_respon_user->total_skor > $perbandingan){
-        if($all_respon_user->bulan->bulan == 'Januari'){
-            $januari++;
-        } elseif ($all_respon_user->bulan->bulan == 'Februari') {
-            $februari++;
-        } elseif ($all_respon_user->bulan->bulan == 'Maret') {
-            $maret++;
-        } elseif ($all_respon_user->bulan->bulan == 'April') {
-            $april++;
-        } elseif ($all_respon_user->bulan->bulan == 'Mei') {
-            $mei++;
-        } elseif ($all_respon_user->bulan->bulan == 'Juni') {
-            $juni++;
-        } elseif ($all_respon_user->bulan->bulan == 'Juli') {
-            $juli++;
-        } elseif ($all_respon_user->bulan->bulan == 'Agustus') {
-            $agustus++;
-        } elseif ($all_respon_user->bulan->bulan == 'September') {
-            $september++;
-        } elseif ($all_respon_user->bulan->bulan == 'Oktober') {
-            $oktober++;
-        } elseif ($all_respon_user->bulan->bulan == 'November') {
-            $november++;
-        } elseif ($all_respon_user->bulan->bulan == 'Desember') {
-            $desember++;
-        }
+    if($all_respon_user->bulan->bulan == 'Januari'){
+        $januari++;
+    } elseif ($all_respon_user->bulan->bulan == 'Februari') {
+        $februari++;
+    } elseif ($all_respon_user->bulan->bulan == 'Maret') {
+        $maret++;
+    } elseif ($all_respon_user->bulan->bulan == 'April') {
+        $april++;
+    } elseif ($all_respon_user->bulan->bulan == 'Mei') {
+        $mei++;
+    } elseif ($all_respon_user->bulan->bulan == 'Juni') {
+        $juni++;
+    } elseif ($all_respon_user->bulan->bulan == 'Juli') {
+        $juli++;
+    } elseif ($all_respon_user->bulan->bulan == 'Agustus') {
+        $agustus++;
+    } elseif ($all_respon_user->bulan->bulan == 'September') {
+        $september++;
+    } elseif ($all_respon_user->bulan->bulan == 'Oktober') {
+        $oktober++;
+    } elseif ($all_respon_user->bulan->bulan == 'November') {
+        $november++;
+    } elseif ($all_respon_user->bulan->bulan == 'Desember') {
+        $desember++;
     }
 }
 

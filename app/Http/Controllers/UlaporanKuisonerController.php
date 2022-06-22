@@ -17,7 +17,7 @@ class UlaporanKuisonerController extends Controller
      */
     public function index()
     {
-        $kuisoner = Kuisoner::count();
+        $kuisoner = Kuisoner::get();
         $respon_user['respon_users'] = ResponUser::with('bulan')->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id)->get();
         return view('user.dashboard.pantauan.index', $respon_user, compact('kuisoner'));
     }

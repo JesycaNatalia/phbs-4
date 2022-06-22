@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KartuKeluarga;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
 use App\Models\Kuisoner;
@@ -17,9 +18,9 @@ class AdashboardController extends Controller
     public function index()
     {
         
-        $user = User::count();
+        $user = KartuKeluarga::count();
         $kuisoner = Kuisoner::count();
-        $all_respon_user['all_respon_users'] = ResponUser::with('bulan')->get(); //ambil data dari bulan terbaru
+        $all_respon_user['all_respon_users'] = ResponUser::with('bulan')->get();
         return view('admin.dashboard.dashboard.index', $all_respon_user, compact('user', 'kuisoner'));
     }
 
