@@ -11,6 +11,7 @@ class JawabanUser extends Model
 
     protected $fillable = [
         'bulan_id',
+        'ppemantauan_id',
         'kuisoner_id',
         'isi_kuisoner_id',
         'user_id',
@@ -19,5 +20,10 @@ class JawabanUser extends Model
     public function isi_kuisoner()
     {
         return $this->belongsTo('App\Models\IsiKuisoner');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

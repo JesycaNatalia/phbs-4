@@ -34,7 +34,9 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
+                                    <th>Nama Pemantauan</th>
                                     <th>Nama Kepala Keluarga</th>
+                                    <th>Nama Responden</th>
                                     <th>No KK</th>
                                     <th>Bulan</th>
                                     <th>Skor</th>
@@ -51,6 +53,7 @@
                                 @endphp
                                 <tr>
                                     <td></td>
+                                    <td>{{ $respon_user->ppemantauan->namapemantauan }}</td>
                                     <td>
                                         @foreach($respon_user->kartu_keluarga->status_keluarga as $keluarga) 
                                         @if($keluarga->user->status_kepala == 'ya')
@@ -58,6 +61,7 @@
                                         @endif
                                         @endforeach
                                     </td>
+                                    <td>{{ $respon_user->user->nama }}</td>
                                     <td>{{ $respon_user->kartu_keluarga->no_kk }}</td>
                                     <td>{{ $respon_user->bulan->bulan }}</td>
                                     <td>{{ $respon_user->total_skor }}</td>
@@ -76,7 +80,7 @@
                                         {{$sehat}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.dashboard.pantauan.show', $respon_user->bulan->id) }}?user_id={{ $respon_user->kartu_keluarga_id }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('admin.dashboard.pantauan.show', $respon_user->bulan->id) }}?user_id={{ $respon_user->kartu_keluarga_id }}&ppemantauan_id={{ $respon_user->ppemantauan_id }}" class="btn btn-info">Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach

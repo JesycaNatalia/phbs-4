@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KuisonerController;
 use App\Http\Controllers\IsiKuisonerController;
 use App\Http\Controllers\BulanController;
-use App\Http\Controllers\GrafikController;
+// use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\GformController;
 use App\Http\Controllers\UlaporanKuisonerController;
 use App\Http\Controllers\DashboardController;
@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kuisoner/create/{id}', [KuisonerController::class, 'create']);
         Route::resource('jawaban', IsiKuisonerController::class);
         Route::get('jawaban/create/{id}', [IsiKuisonerController::class, 'create']);
-        Route::resource('grafik', GrafikController::class);
+        // Route::resource('grafik', GrafikController::class);
         Route::resource('bulan', BulanController::class);
         Route::resource('pantauan', PantauanController::class);
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('dashboard')->name('user.dashboard.')->group(function () {
         Route::resource('gform', GformController::class);
+        Route::get('gform_result/{id}', [GformController::class, 'show_result']);
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
         Route::resource('upilihpemantauan', UpilihPemantauanController::class);

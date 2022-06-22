@@ -22,7 +22,8 @@ class PantauanController extends Controller
         $kuisoner = Kuisoner::count();
         $user = User::whereHas('kartu_keluarga')->get();
         $respon_user['respon_users'] = ResponUser::with('bulan', 'kartu_keluarga.status_keluarga')->get();
-        return view('admin.dashboard.pantauan.index', $respon_user, compact('kuisoner', 'user'));
+        $jawaban_user = JawabanUser::with('user')->get();
+        return view('admin.dashboard.pantauan.index', $respon_user, compact('kuisoner', 'user', 'jawaban_user'));
     }
 
     /**
@@ -59,7 +60,7 @@ class PantauanController extends Controller
         foreach($keluargas as $keluarga){
             $jawaban_user['jawaban_users'] = JawabanUser::with('isi_kuisoner')->where([['bulan_id', $bulan_id], ['user_id', $keluarga->user_id]])->get();
             if($jawaban_user['jawaban_users'] != null){
-                $kuisoner['kuisoners'] = Kuisoner::get();
+                $kuisoner['kuisoners'] = Kuisoner::where('ppemantauan_id', $request->ppemantauan_id)->get();
                 return view('user.dashboard.gformkuisoner.detail_jawaban', $kuisoner, $jawaban_user);
             }
         }

@@ -60,7 +60,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('user.dashboard.gform.show', $respon_user->bulan->id) }}" class="btn btn-info">Detail</a>
+                                        <a href="/dashboard/gform_result/{{$respon_user->bulan_id}}?ppemantauan_id={{$respon_user->ppemantauan_id}}" class="btn btn-info">Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach

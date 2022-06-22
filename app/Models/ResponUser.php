@@ -11,6 +11,8 @@ class ResponUser extends Model
 
     protected $fillable = [
         'bulan_id',
+        'user_id',
+        'ppemantauan_id',
         'kartu_keluarga_id',
         'total_skor',
     ];
@@ -28,5 +30,10 @@ class ResponUser extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function ppemantauan()
+    {
+        return $this->belongsTo('App\Models\Ppemantauan');
     }
 }

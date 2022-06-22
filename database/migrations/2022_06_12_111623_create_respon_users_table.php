@@ -15,13 +15,17 @@ class CreateResponUsersTable extends Migration
     {
         Schema::create('respon_users', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('ppemantauan_id')->unsigned();
             $table->bigInteger('bulan_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('kartu_keluarga_id')->unsigned();
             $table->bigInteger('total_skor');
             $table->timestamps();
 
+            $table->foreign('ppemantauan_id')->references('id')->on('ppemantauans')->onDelete('cascade');
             $table->foreign('bulan_id')->references('id')->on('bulans')->onDelete('cascade');
             $table->foreign('kartu_keluarga_id')->references('id')->on('kartu_keluargas')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
