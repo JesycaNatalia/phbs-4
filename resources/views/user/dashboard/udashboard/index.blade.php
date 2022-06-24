@@ -146,9 +146,6 @@
         } else {
             $belum_sehat++;
         }
-        // echo $kuisoner->count().'>'.$total_skor_user. '<br>';
-        
-        // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;   
     }
 
     $total_warga = $sehat + $belum_sehat;
