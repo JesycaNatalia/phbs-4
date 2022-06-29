@@ -49,7 +49,7 @@
                                 @foreach($respon_users as $respon_user)
                                 @php 
                                 $total_skor = $respon_user->total_skor;
-                                $perbandingan = ($kuisoner * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+                                $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
                                 @endphp
                                 <tr>
                                     <td></td>
@@ -68,7 +68,7 @@
                                     <td>
                                         @php
                                         $total_skor = $respon_user->total_skor;
-                                        $perbandingan = ($kuisoner * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+                                        $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
                                         $sehat = '';
                                         
                                         if($total_skor > $perbandingan ){

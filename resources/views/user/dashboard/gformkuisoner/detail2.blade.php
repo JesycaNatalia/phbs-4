@@ -17,7 +17,7 @@
             <h5 class="card-title">Special title treatment</h5>
             @php 
             $total_skor = $respon_users->last()->total_skor;
-            $perbandingan = ($kuisoner * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+            $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner * 3) / 2);
             $sehat = '';
             
             if($total_skor > $perbandingan ){

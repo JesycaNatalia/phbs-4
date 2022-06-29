@@ -15,6 +15,7 @@ class ResponUser extends Model
         'ppemantauan_id',
         'kartu_keluarga_id',
         'total_skor',
+        'skor_nol',
     ];
 
     public function bulan()

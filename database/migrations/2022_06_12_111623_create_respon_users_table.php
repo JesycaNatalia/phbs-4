@@ -20,6 +20,7 @@ class CreateResponUsersTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('kartu_keluarga_id')->unsigned();
             $table->bigInteger('total_skor');
+            $table->bigInteger('skor_nol');
             $table->timestamps();
 
             $table->foreign('ppemantauan_id')->references('id')->on('ppemantauans')->onDelete('cascade');

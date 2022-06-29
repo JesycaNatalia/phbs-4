@@ -88,7 +88,7 @@
                     @php 
                     
                     $total_skor = $respon_users->last()->total_skor;
-                    $perbandingan = 1;
+                    $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2);
                     // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;
                     @endphp
                     {{-- kode diatas untuk menghitung nilai sehat dan tidak --}}

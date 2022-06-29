@@ -46,7 +46,7 @@
                                 @foreach($respon_users as $respon_user)
                                 @php 
                                 $total_skor = $respon_user->total_skor;
-                                $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+                                $perbandingan = ($respon_user->skor_nol * 3) - ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
                                 @endphp
                                 {{-- kode diatas untuk menghitung nilai sehat dan tidak --}}
                                 <tr>

@@ -84,14 +84,19 @@ class GformController extends Controller
 
         $jawabans = JawabanUser::with('isi_kuisoner')->where([['bulan_id', $bulan->id], ['user_id', Auth::user()->id], ['ppemantauan_id', $request->ppemantauan_id]])->get();
         $total_skor = 0;
+        $skor_nol = 0;
         foreach ($jawabans as $jawaban) {
             $total_skor = $total_skor + $jawaban->isi_kuisoner->skor;
+            if($jawaban->isi_kuisoner->skor == '0'){
+                $skor_nol++;
+            }
         }
         // dd($total_skor);
         ResponUser::create([
             'bulan_id' => $bulan->id,
             'kartu_keluarga_id' => Auth::user()->kartu_keluarga_id,
             'total_skor' => $total_skor,
+            'skor_nol' => $skor_nol,
             'ppemantauan_id' => $pemantauan_id,
             'user_id' => Auth::user()->id,
         ]);
