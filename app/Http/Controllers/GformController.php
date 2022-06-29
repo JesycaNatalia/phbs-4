@@ -102,7 +102,7 @@ class GformController extends Controller
         ]);
 
         $bulan = Bulan::orderBy('id', 'desc')->first();
-        $kuisoner = Kuisoner::count();
+        $kuisoner = Kuisoner::where('ppemantauan_id', $pemantauan_id)->count();
         $respon_user['respon_users'] = ResponUser::with('bulan')->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id)->get();
 
         return view('user.dashboard.gformkuisoner.detail', $respon_user, compact('kuisoner', 'bulan'));
