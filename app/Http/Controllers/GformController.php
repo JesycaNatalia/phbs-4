@@ -137,7 +137,7 @@ class GformController extends Controller
             } else {
                 $bulan = Bulan::orderBy('id', 'desc')->first();
                 $kuisoner = Kuisoner::where('ppemantauan_id', $id)->count();
-                $respon_user['respon_users'] = ResponUser::with('bulan')->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id)->get();
+                $respon_user['respon_users'] = ResponUser::with('bulan')->where([['kartu_keluarga_id', Auth::user()->kartu_keluarga_id], ['ppemantauan_id', $id]])->get();
                 return view('user.dashboard.gformkuisoner.detail2', $respon_user, compact('kuisoner', 'bulan'));
             }
         }

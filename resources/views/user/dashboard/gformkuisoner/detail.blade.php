@@ -28,6 +28,7 @@
 
             @endphp
             <p class="card-text">Total Skor : {{$respon_users->last()->total_skor;}} | {{ $sehat }} pada bulan {{ $bulan->bulan }} </p>
+            <p class="card-text">Rata-Rata Skor : {{$respon_users->last()->total_skor / ($kuisoner - $respon_users->last()->skor_nol);}} </p>
         </center>
         <a href="#" class="btn btn-primary">Kembali</a>
     </div>
