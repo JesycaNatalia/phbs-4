@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Bulan;
 use Illuminate\Http\Request;
+use App\Models\ResponUser;
+use App\Models\Kuisoner;
+
 
 class BulanController extends Controller
 {
@@ -52,8 +55,10 @@ class BulanController extends Controller
      */
     public function show($id)
     {
-        $bulan['bulan'] = Bulan::findOrFail($id);
-        return view('admin.dashboard.bulan.show', $bulan);
+        $bulan = Bulan::findOrFail($id);
+        $kuisoner = Kuisoner::get();
+        $all_respon_user['all_respon_users'] = ResponUser::with('bulan')->where('bulan_id', $bulan->id)->get();
+        return view('admin.dashboard.bulan.show', $all_respon_user, compact('kuisoner', 'bulan'));
     }
 
     /**
