@@ -43,8 +43,8 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('grafik', GrafikController::class);
         Route::resource('bulan', BulanController::class);
         Route::resource('pantauan', PantauanController::class);
-        Route::resource('pantauansoal', PantauanSoalController::class);
         Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
+        Route::resource('pantauansoal', PantauanSoalController::class);
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
         Route::resource('grafik', GrafikController::class);

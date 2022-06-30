@@ -44,17 +44,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(session()->get('bulans') as $bulan)
-                                <tr>
+                                @php
+                                $bulans = session()->get('bulans');
+                                @endphp
+                                @for($i=0; $i< count($bulans); $i++) <tr>
                                     <td></td>
-                                    <td>{{ $bulan -> tahun }}</td>
-                                    <td>{{ $bulan -> bulan }}</td>
-                                    <td>{{ session()->get('skor3') }}</td>
-                                    <td>{{ session()->get('skor2') }}</td>
-                                    <td>{{ session()->get('skor1') }}</td>
-                                    <td>(ini rata rata cara ngitungnya ((jumlah user pilih opsiA X Skor opsi A)+(jumlah user pilih opsiB X Skor opsi B)+(jumlah user pilih opsiC X Skor opsi C))/Jumlah user yang ngisi kuisoner di bulan itu)</td>
-                                </tr>
-                                @endforeach
+                                    <td>{{ $bulans[$i] -> tahun }}</td>
+                                    <td>{{ $bulans[$i] -> bulan }}</td>
+                                    @php
+                                    $skors = session()->get('skors');
+                                    @endphp
+                                    @for($j=0; $j< count($skors[$i]); $j++) <td>{{ $skors[$i][$j] }}</td>
+                                        @endfor
+                                        <!-- <td>(ini rata rata cara ngitungnya ((jumlah user pilih opsiA X Skor opsi A)+(jumlah user pilih opsiB X Skor opsi B)+(jumlah user pilih opsiC X Skor opsi C))/Jumlah user yang ngisi kuisoner di bulan itu)</td> -->
+                                        </tr>
+                                        @endfor
                             </tbody>
                         </table>
                     </div>

@@ -29,7 +29,7 @@ class PantauanSoalController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.pantauansoal.show');
+        // return view('admin.dashboard.pantauansoal.show');
     }
 
     /**
@@ -40,36 +40,53 @@ class PantauanSoalController extends Controller
      */
     public function store(Request $request)
     {
+        // global $tahun;
 
         // get id pertanyaan
+        // mengambil data dari tabel kuisoners yang pertanyaanya sama dengan yang di pilih di option
         $pertanyaan = DB::table('kuisoners')->where('pertanyaan', 'LIKE', '%' . $request->pemantauansoal . '%')->first();
 
         // get jawaban dari pertanyaan yang id nya di atas
-        $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
 
+        $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
         // get nama bulan
         $bulans = Bulan::where('tahun', $request->tahun)->get();
-        // dd($bulan);
-        // hitung skor tapi masih error:)
-        $skor3 = JawabanUser::with(['isi_kuisoner' => function ($query) {
-            $query->where('skor', 3);
-        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
+        // buat array untuk menyimpan skor satu bulan
+        $skorperbulan = array();
 
-        $skor2 = JawabanUser::with(['isi_kuisoner' => function ($query) {
-            $query->where('skor', 2);
-        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
+        // buat array untuk menyimpan semua skor 
+        $skors = array();
 
-        $skor1 = JawabanUser::with(['isi_kuisoner' => function ($query) {
-            $query->where('skor', 1);
-        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
+        // $tahun = $request->tahun;
 
-        return redirect()->route('admin.dashboard.pantauansoal.create')->with([
+        //  dari tiap bulan di tahun yang dipilih
+        foreach ($bulans as $bulan) {
+            // cek skor dengan perulangan
+            for ($i = 3; $i >= 1; $i--) {
+                $skor = JawabanUser::where('bulan_id', $bulan->id)
+                    ->whereHas(
+                        'isi_kuisoner',
+                        function ($query) use ($i) {
+                            return $query->where('skor', $i);
+                        }
+                    )->where('kuisoner_id', $pertanyaan->id)->count();
+                array_push($skorperbulan, $skor);
+            }
+            $a = $skorperbulan[0] * 3;
+            $b = $skorperbulan[1] * 2;
+            $c = $skorperbulan[2] * 1;
+
+            $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
+            array_push($skorperbulan, $ratarata);
+            array_push($skors, $skorperbulan);
+            $skorperbulan = array();
+        }
+        // dd($skors);
+        return redirect()->route('admin.dashboard.pantauansoal.laporan')->with([
             'pertanyaan' => $pertanyaan->pertanyaan,
             'isi_kuisoner' => $isi_kuisoner,
             'bulans' => $bulans,
-            'skor3' => $skor3,
-            'skor2' => $skor2,
-            'skor1' => $skor1,
+            'skors' => $skors,
         ]);
     }
 
