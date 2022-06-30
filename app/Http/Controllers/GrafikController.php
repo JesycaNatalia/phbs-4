@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ppemantauan;
+use App\Models\ResponUser;
 use Illuminate\Http\Request;
+use App\Models\KartuKeluarga;
+use App\Models\Kuisoner;
 
 class GrafikController extends Controller
 {
@@ -47,7 +50,10 @@ class GrafikController extends Controller
      */
     public function show($id)
     {
-        return view('admin.dashboard.grafik.show');
+        $user = KartuKeluarga::count();
+        $kuisoner = Kuisoner::count();
+        $all_respon_user['all_respon_users'] = ResponUser::with('bulan')->where('ppemantauan_id', $id)->get();
+        return view('admin.dashboard.grafik.show', $all_respon_user, compact('user', 'kuisoner'));
     }
 
     /**

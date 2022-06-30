@@ -11,6 +11,7 @@ use App\Http\Controllers\UlaporanKuisonerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdashboardController;
 use App\Http\Controllers\PantauanController;
+use App\Http\Controllers\PantauanSoalController;
 use App\Http\Controllers\PilihPemantauanController;
 use App\Http\Controllers\UpilihPemantauanController;
 /*
@@ -42,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('grafik', GrafikController::class);
         Route::resource('bulan', BulanController::class);
         Route::resource('pantauan', PantauanController::class);
+        Route::resource('pantauansoal', PantauanSoalController::class);
+        Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
         Route::resource('grafik', GrafikController::class);

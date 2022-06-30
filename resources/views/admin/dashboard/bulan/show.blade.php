@@ -6,11 +6,34 @@
 @endsection
 
 @section('content')
+
+@if($all_respon_users != '[]')
+@php
+$sehat = 0;
+$belum_sehat = 0;
+foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
+$perbandingan = ($all_respon_user->skor_nol * 3) - (($kuisoner->count() * 3) / 2);
+$total_skor_user = 0;
+foreach($all_respon_users as $keluarga_respon){
+if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
+$total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
+}
+}
+if($total_skor_user > $perbandingan){
+$sehat++;
+} else {
+$belum_sehat++;
+}
+}
+$total_warga = $sehat + $belum_sehat;
+$rata_sehat = $sehat / $total_warga * 100;
+$rata_belum_sehat = $belum_sehat / $total_warga * 100;
+@endphp
 <?php
 
 $dataPoints = array(
-    array("label" => "Sehat", "y" => 64.02),
-    array("label" => "Tidak Sehat", "y" => 12.55)
+    array("label" => "Sehat", "y" => $rata_sehat),
+    array("label" => "Belum Sehat", "y" => $rata_belum_sehat)
 )
 
 ?>
