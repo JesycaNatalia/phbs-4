@@ -25,7 +25,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <p class="card-title font-weight-bold">Tabel Pemantauan (isi ini sesuai nama pemantauansoal yg dipilih)</p>
+                <p class="card-title font-weight-bold">Tabel Pemantauan {{ session()->get('pertanyaan') }}</p>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -34,21 +34,27 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
+                                    <th>Tahun</th>
                                     <th>Bulan</th>
                                     <!-- opsi ini sesuai jawaban dari pertanyaan yg dipilih di dropdown -->
-                                    <th>(opsi A)</th>
-                                    <th>(opsi B)</th>
-                                    <th>(opsi C)</th>
+                                    @foreach(session()->get('isi_kuisoner') as $isi_kuisoners)
+                                    <th>{{$isi_kuisoners->jawaban}}</th>
+                                    @endforeach
+                                    <th>Rata-Rata</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(session()->get('bulans') as $bulan)
                                 <tr>
                                     <td></td>
-                                    <td>{{ session()->get('bulan.bulan') }}</td>
+                                    <td>{{ $bulan -> tahun }}</td>
+                                    <td>{{ $bulan -> bulan }}</td>
                                     <td>{{ session()->get('skor3') }}</td>
                                     <td>{{ session()->get('skor2') }}</td>
                                     <td>{{ session()->get('skor1') }}</td>
+                                    <td>(ini rata rata cara ngitungnya ((jumlah user pilih opsiA X Skor opsi A)+(jumlah user pilih opsiB X Skor opsi B)+(jumlah user pilih opsiC X Skor opsi C))/Jumlah user yang ngisi kuisoner di bulan itu)</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

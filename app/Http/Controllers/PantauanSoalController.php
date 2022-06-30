@@ -42,31 +42,31 @@ class PantauanSoalController extends Controller
     {
 
         // get id pertanyaan
-        $pertanyaan_id = DB::table('kuisoners')->where('pertanyaan', 'LIKE', '%' . $request->pemantauansoal . '%')->first()->id;
+        $pertanyaan = DB::table('kuisoners')->where('pertanyaan', 'LIKE', '%' . $request->pemantauansoal . '%')->first();
 
         // get jawaban dari pertanyaan yang id nya di atas
-        $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan_id)->get();
+        $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
 
         // get nama bulan
-        $bulan = Bulan::where('id', $request->bulan)->first();
-
+        $bulans = Bulan::where('tahun', $request->tahun)->get();
+        // dd($bulan);
         // hitung skor tapi masih error:)
         $skor3 = JawabanUser::with(['isi_kuisoner' => function ($query) {
             $query->where('skor', 3);
-        }])->where('kuisoner_id', $pertanyaan_id)->where('bulan_id', $request->bulan)->count();
+        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
 
         $skor2 = JawabanUser::with(['isi_kuisoner' => function ($query) {
             $query->where('skor', 2);
-        }])->where('kuisoner_id', $pertanyaan_id)->where('bulan_id', $request->bulan)->count();
+        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
 
         $skor1 = JawabanUser::with(['isi_kuisoner' => function ($query) {
             $query->where('skor', 1);
-        }])->where('kuisoner_id', $pertanyaan_id)->where('bulan_id', $request->bulan)->count();
+        }])->where('kuisoner_id', $pertanyaan->id)->where('bulan_id', $request->bulan)->count();
 
         return redirect()->route('admin.dashboard.pantauansoal.create')->with([
-            'pertanyaan' => $request->pertanyaan,
+            'pertanyaan' => $pertanyaan->pertanyaan,
             'isi_kuisoner' => $isi_kuisoner,
-            'bulan' => $bulan,
+            'bulans' => $bulans,
             'skor3' => $skor3,
             'skor2' => $skor2,
             'skor1' => $skor1,

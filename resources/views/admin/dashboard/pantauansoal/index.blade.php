@@ -45,11 +45,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="course" class="form-label">Bulan</label>
-                        <select class="form-control" name="bulan" id="category">
-                            <option hidden>--- Pilih Bulan ---</option>
+                        <label for="course" class="form-label">Tahun</label>
+                        <select class="form-control" name="tahun" id="category">
+                            <option hidden>--- Pilih Tahun ---</option>
                             @foreach ($bulans as $bulan)
-                            <option value="{{ $bulan->id }}">{{ $bulan->bulan }}</option>
+                            <option value="{{ $bulan->tahun }}">{{ $bulan->tahun }}</option>
                             @endforeach
                         </select>
                     </div>
