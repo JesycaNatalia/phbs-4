@@ -27,6 +27,7 @@
         <div class="card">
             <div class="card-header">
                 <p class="card-title font-weight-bold">Tabel Laporan</p>
+                <a style="float:right" class="btn btn-primary" href="{{ route('admin.dashboard.saranpemantauan.create') }}/{{$id}}"><i class="bx bx-plus"></i><span class="menu-item text-truncate" data-i18n="Tambah Saran">Tambah Saran</span></a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -36,16 +37,18 @@
                                 <tr>
                                     <th style="width: 5%">No</th>
                                     <!-- ini pemantauannya yang sesuai dropdown di laporan persoal/ pertanyaan dari pemantauan phbbs -->
-                                    <th>Pemantauan</th>
                                     <th>Saran</th>
+                                    <th class="text-center" style="width: 15%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($saran_pemantauans as $saran_pemantauan)
                                 <tr>
                                     <td></td>
-                                    <td></td>
+                                    <td>{{ $saran_pemantauan->saran}}</td>
                                     <td></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

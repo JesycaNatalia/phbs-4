@@ -48,6 +48,7 @@
                                     <td>
                                         <div class="btn-group btn-group-sm">
                                             <a href="{{ route('admin.dashboard.jawaban.show', $kuisoner->id) }}" class="btn btn-primary">Jawaban</a>
+                                            <a href="{{ route('admin.dashboard.saranpemantauan.show', $kuisoner->id) }}" class="btn btn-success">Saran</a>
                                             <a href="{{ route('admin.dashboard.kuisoner.edit', $kuisoner->id) }}" class="btn btn-info">Edit</a>
                                             <button class="btn btn-danger deleteButton" value="{{ $kuisoner->id }}">Hapus</button>
                                         </div>

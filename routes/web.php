@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
         Route::resource('saranpemantauan', SaranPemantauanController::class);
+        Route::get('saranpemantauan/create/{id}', [SaranPemantauanController::class, 'create']);
         Route::resource('grafik', GrafikController::class);
     });
 

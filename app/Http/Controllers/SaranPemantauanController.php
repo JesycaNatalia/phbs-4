@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Saran;
 use Illuminate\Http\Request;
 
 class SaranPemantauanController extends Controller
@@ -13,8 +14,6 @@ class SaranPemantauanController extends Controller
      */
     public function index()
     {
-        // ini berarti direlasiin sama pertanyaan ya daf
-        return view('admin.dashboard.saran.index');
     }
 
     /**
@@ -22,9 +21,9 @@ class SaranPemantauanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('admin.dashboard.saran.create',  compact('id'));
     }
 
     /**
@@ -35,7 +34,12 @@ class SaranPemantauanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Saran::create([
+            'kuisoner_id' => $request->kuisoner_id,
+            'saran' => $request->saran,
+        ]);
+
+        return redirect()->back()->with("OK", "Berhasil ditambahkan.");
     }
 
     /**
@@ -46,7 +50,8 @@ class SaranPemantauanController extends Controller
      */
     public function show($id)
     {
-        //
+        $saran_pemantauan['saran_pemantauans'] = Saran::where('kuisoner_id', $id)->get();
+        return view('admin.dashboard.saran.index', $saran_pemantauan, compact('id'));
     }
 
     /**
