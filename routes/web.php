@@ -14,6 +14,9 @@ use App\Http\Controllers\PantauanController;
 use App\Http\Controllers\PantauanSoalController;
 use App\Http\Controllers\PilihPemantauanController;
 use App\Http\Controllers\UpilihPemantauanController;
+use App\Http\Controllers\RekapRatarataController;
+use App\Http\Controllers\SaranPemantauanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,8 +48,10 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('pantauan', PantauanController::class);
         Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
         Route::resource('pantauansoal', PantauanSoalController::class);
+        Route::resource('rekapratarata', RekapRatarataController::class);
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
+        Route::resource('saranpemantauan', SaranPemantauanController::class);
         Route::resource('grafik', GrafikController::class);
     });
 
