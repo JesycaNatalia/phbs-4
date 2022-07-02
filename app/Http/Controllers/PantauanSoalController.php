@@ -18,8 +18,14 @@ class PantauanSoalController extends Controller
      */
     public function index()
     {
-        $bulan['bulans'] = Bulan::get();
-        return view('admin.dashboard.pantauansoal.index', $bulan);
+        $bulans = Bulan::get();
+        $tahuns = [];
+        foreach($bulans as $index => $bulan){
+            if(!in_array($bulan->tahun, $tahuns)){
+                $tahuns[$index] = $bulan->tahun;
+            }
+        }
+        return view('admin.dashboard.pantauansoal.index', compact('tahuns'));
     }
 
     /**

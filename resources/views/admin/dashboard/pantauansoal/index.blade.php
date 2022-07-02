@@ -48,8 +48,8 @@
                         <label for="course" class="form-label">Tahun</label>
                         <select class="form-control" name="tahun" id="category">
                             <option hidden>--- Pilih Tahun ---</option>
-                            @foreach ($bulans as $bulan)
-                            <option value="{{ $bulan->tahun }}">{{ $bulan->tahun }}</option>
+                            @foreach ($tahuns as $tahun)
+                            <option value="{{ $tahun }}">{{ $tahun }}</option>
                             @endforeach
                         </select>
                     </div>
