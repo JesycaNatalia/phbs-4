@@ -15,8 +15,14 @@ class Kuisoner extends Model
         'penjelasan',
     ];
 
+    // 1 pertanyaan memiliki banyak jawaban ini relasi buat jawaban
     public function jawaban()
     {
         return $this->hasMany('App\Models\IsiKuisoner');
+    }
+
+    public function saran()
+    {
+        return $this->belongsTo('App\Models\Saran');
     }
 }

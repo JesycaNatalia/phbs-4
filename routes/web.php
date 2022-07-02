@@ -11,8 +11,14 @@ use App\Http\Controllers\UlaporanKuisonerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdashboardController;
 use App\Http\Controllers\PantauanController;
+use App\Http\Controllers\PantauanSoalController;
 use App\Http\Controllers\PilihPemantauanController;
 use App\Http\Controllers\UpilihPemantauanController;
+use App\Http\Controllers\RekapRatarataController;
+use App\Http\Controllers\SaranPemantauanController;
+use App\Http\Controllers\InformasiLingkunganController;
+use App\Http\Controllers\RekapController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,8 +48,13 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('grafik', GrafikController::class);
         Route::resource('bulan', BulanController::class);
         Route::resource('pantauan', PantauanController::class);
+        Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
+        Route::resource('pantauansoal', PantauanSoalController::class);
+        Route::resource('rekapratarata', RekapRatarataController::class);
         Route::resource('pilihpemantauan', PilihPemantauanController::class);
         Route::resource('adashboard', AdashboardController::class);
+        Route::resource('saranpemantauan', SaranPemantauanController::class);
+        Route::get('saranpemantauan/create/{id}', [SaranPemantauanController::class, 'create']);
         Route::resource('grafik', GrafikController::class);
     });
 
@@ -53,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
         Route::resource('upilihpemantauan', UpilihPemantauanController::class);
+        Route::resource('informasilingkungan', InformasiLingkunganController::class);
+        Route::resource('rekap', RekapController::class);
     });
 
     Route::get('/getPemantauan/{id}', [GformController::class, 'getPemantauan']);

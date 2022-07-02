@@ -159,6 +159,14 @@
                         <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.pantauan.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Bulanan</span></a>
                         </li>
                     </ul>
+                    <ul class="menu-content" style="">
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.pantauansoal.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Per Soal</span></a>
+                        </li>
+                    </ul>
+                    <ul class="menu-content" style="">
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.rekapratarata.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Rekap Rata-Rata</span></a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">

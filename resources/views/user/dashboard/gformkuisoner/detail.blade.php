@@ -15,12 +15,13 @@
     <div class="card-body">
         <center>
             <h5 class="card-title">Special title treatment</h5>
+            <h5 class="card-title">Terimakasih Sudah Mengisi Form Pemantauan</h5>
             @php
             $total_skor = $respon_users->last()->total_skor;
             $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner * 3) / 2);
             $sehat = '';
 
-            if($total_skor > $perbandingan ){
+            if($total_skor > $perbandingan){
             $sehat = 'Keluarga anda masuk kategori hidup sehat';
             }else{
             $sehat = 'Keluarga anda belum masuk kategori hidup sehat';

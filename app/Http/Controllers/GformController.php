@@ -22,9 +22,11 @@ class GformController extends Controller
         $bulan = Bulan::orderBy('id', 'desc')->first();
         if ($bulan != null) {
             $respon_user = ResponUser::where([['bulan_id', $bulan->id], ['kartu_keluarga_id', Auth::user()->kartu_keluarga_id]])->first();
+            // jika user belum respon atau isi gform maka muncullah dia ke view isi gform 
             if ($respon_user == null) {
                 $kuisoner['kuisoners'] = Kuisoner::get();
                 return view('user.dashboard.gformkuisoner.index', $kuisoner);
+                // kalau user udah ngisi maka muncul ke 
             } else {
                 $bulan = Bulan::orderBy('id', 'desc')->first();
                 $kuisoner = Kuisoner::count();
@@ -87,10 +89,26 @@ class GformController extends Controller
         $skor_nol = 0;
         foreach ($jawabans as $jawaban) {
             $total_skor = $total_skor + $jawaban->isi_kuisoner->skor;
+<<<<<<< HEAD
             if($jawaban->isi_kuisoner->skor == '0'){
+=======
+            if ($jawaban->isi_kuisoner->skor == '0') {
+>>>>>>> eb8570bead9de82df8c8d120f27f4fe6c24667ec
                 $skor_nol++;
             }
         }
+
+        // $total_skor = 0;
+        // $dibagi = 0;
+        // dd($total_skor);
+        // foreach ($jawabans as $jawaban) {
+        //     if ($jawaban->isi_kuisoner->skor == 0) {
+        //         $dibagi++;
+        //     }
+        // }
+        // foreach ($jawabans as $jawaban) {
+        //     $total_skor = $total_skor + ($jawaban->isi_kuisoner->skor / 10);
+        // }
         // dd($total_skor);
         ResponUser::create([
             'bulan_id' => $bulan->id,
@@ -128,7 +146,7 @@ class GformController extends Controller
         $bulan = Bulan::orderBy('id', 'desc')->first();
         if ($bulan != null) {
             // $k = Kuisoner::where('ppemantauan_id', $id)->first();
-            $respon_user = ResponUser::where([['bulan_id', $bulan->id], ['kartu_keluarga_id', Auth::user()->kartu_keluarga_id],['ppemantauan_id', $id]])->first();
+            $respon_user = ResponUser::where([['bulan_id', $bulan->id], ['kartu_keluarga_id', Auth::user()->kartu_keluarga_id], ['ppemantauan_id', $id]])->first();
 
             // $jawaban_user = JawabanUser::where([['bulan_id', $bulan->id], ['user_id', Auth::user()->id], ['ppemantauan_id', $id]])->first();
             if ($respon_user == null) {

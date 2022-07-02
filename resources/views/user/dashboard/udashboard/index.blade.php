@@ -9,8 +9,8 @@
 @section('content')
 
 @php
-    $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id); //ini aku taroh sini karna di view gabisa dikirim datanya untuk peruser
-    
+$respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kartu_keluarga_id); //ini aku taroh sini karna di view gabisa dikirim datanya untuk peruser
+
 @endphp
 
 @if($status != null)
@@ -52,21 +52,21 @@
             <div class="widget widget-stats bg-blue">
                 <br>
                 <div class="stats-info">
-                    @php 
+                    @php
                     $rata_rata = 0;
                     $respon_total = 0;
                     if($respon_users->count() == 0){
-                        $respon_total = 1;
+                    $respon_total = 1;
                     } else {
-                        $respon_total = $respon_users->count();
+                    $respon_total = $respon_users->count();
                     }
                     foreach($respon_users as $respon_user){
-                        $rata_rata = $rata_rata + $respon_user->total_skor;
+                    $rata_rata = $rata_rata + $respon_user->total_skor;
                     }
                     $rata_rata = $rata_rata / $respon_total;
                     @endphp
                     <center>
-                        <h4>Rata-Rata  </h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
+                        <h4>Rata-Rata </h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
                         <hr>
                         <h3>{{ $rata_rata }}</h3>
                     </center>
@@ -85,8 +85,8 @@
             <div class="widget widget-stats bg-blue">
                 <br>
                 <div class="stats-info">
-                    @php 
-                    
+                    @php
+
                     $total_skor = $respon_users->last()->total_skor;
                     $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2);
                     // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;
@@ -130,22 +130,23 @@
 
 @if($all_respon_users != '[]')
 <div class="container">
-    @php 
+    @php
     $sehat = 0;
     $belum_sehat = 0;
     $perbandingan = ($kuisoner->count() * 3) / 2;
-    foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat 
-        $total_skor_user = 0;
-        foreach($all_respon_users as $keluarga_respon){
-            if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
-                $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
-            }
-        }
-        if($total_skor_user > $perbandingan){
-            $sehat++;
-        } else {
-            $belum_sehat++;
-        }
+    foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
+    $total_skor_user = 0;
+    foreach($all_respon_users as $keluarga_respon){
+    if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
+    $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
+    }
+    }
+    if($total_skor_user > $perbandingan){
+    $sehat++;
+    } else {
+    $belum_sehat++;
+    }
+
     }
 
     $total_warga = $sehat + $belum_sehat;

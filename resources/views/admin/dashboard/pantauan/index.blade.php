@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                                 @foreach($respon_users as $respon_user)
-                                @php 
+                                @php
                                 $total_skor = $respon_user->total_skor;
                                 $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
                                 @endphp
@@ -55,9 +55,9 @@
                                     <td></td>
                                     <td>{{ $respon_user->ppemantauan->namapemantauan }}</td>
                                     <td>
-                                        @foreach($respon_user->kartu_keluarga->status_keluarga as $keluarga) 
+                                        @foreach($respon_user->kartu_keluarga->status_keluarga as $keluarga)
                                         @if($keluarga->user->status_kepala == 'ya')
-                                            {{$keluarga->user->nama}}
+                                        {{$keluarga->user->nama}}
                                         @endif
                                         @endforeach
                                     </td>
@@ -70,11 +70,11 @@
                                         $total_skor = $respon_user->total_skor;
                                         $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
                                         $sehat = '';
-                                        
+
                                         if($total_skor > $perbandingan ){
-                                            $sehat = 'Sehat';
+                                        $sehat = 'Sehat';
                                         }else{
-                                            $sehat = 'Belum Sehat';
+                                        $sehat = 'Belum Sehat';
                                         }
                                         @endphp
                                         {{$sehat}}
