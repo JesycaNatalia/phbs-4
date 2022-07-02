@@ -134,6 +134,19 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('user.dashboard.informasilingkungan.index') }}">
+                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <span class="menu-title text-truncate" data-i18n="Driver">Informasi Lingkungan</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('user.dashboard.rekap.index') }}">
+                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <span class="menu-title text-truncate" data-i18n="Driver">Rekap Bulanan</span>
+                    </a>
+                </li>
 
                 <li class="nav-item has-sub">
                     <a href="#">

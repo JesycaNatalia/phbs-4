@@ -170,14 +170,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard.saranpemantauan.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Saran Pemantauan</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
                     <a href="{{ route('admin.dashboard.grafik.index') }}">
                         <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Grafik</span>

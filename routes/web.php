@@ -16,6 +16,8 @@ use App\Http\Controllers\PilihPemantauanController;
 use App\Http\Controllers\UpilihPemantauanController;
 use App\Http\Controllers\RekapRatarataController;
 use App\Http\Controllers\SaranPemantauanController;
+use App\Http\Controllers\InformasiLingkunganController;
+use App\Http\Controllers\RekapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
         Route::resource('upilihpemantauan', UpilihPemantauanController::class);
+        Route::resource('informasilingkungan', InformasiLingkunganController::class);
+        Route::resource('rekap', RekapController::class);
     });
 
     Route::get('/getPemantauan/{id}', [GformController::class, 'getPemantauan']);
