@@ -42,13 +42,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for($i = 0; $i < count($rekap_user); $i++)
                                 <tr>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>(rata-ratanya) || (Nama pemantauannya)</td>
-                                    <td>(rata-ratanya) || (Nama pemantauannya)</td>
+                                    <td>{{$rekap_user[$i]['tahun']}}</td>
+                                    <td>{{$rekap_user[$i]['bulan']}}</td>
+                                    <td>{{$rekap_user[$i]['max']}} || {{$rekap_user[$i]['pertanyaan_max']}}</td>
+                                    <td>{{$rekap_user[$i]['min']}} || {{$rekap_user[$i]['pertanyaan_min']}}</td>
                                 </tr>
+                                @endfor
                             </tbody>
                         </table>
                     </div>
