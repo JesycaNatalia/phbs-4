@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bulan;
-use App\Models\Kuisoner;
+use App\Models\Ppemantauan;
 use App\Models\IsiKuisoner;
 use App\Models\JawabanUser;
 use Illuminate\Http\Request;
@@ -18,6 +18,7 @@ class PantauanSoalController extends Controller
      */
     public function index()
     {
+        $ppemantauan['ppemantauans'] = Ppemantauan::get();
         $bulans = Bulan::get();
         $tahuns = [];
         foreach($bulans as $index => $bulan){
@@ -25,7 +26,7 @@ class PantauanSoalController extends Controller
                 $tahuns[$index] = $bulan->tahun;
             }
         }
-        return view('admin.dashboard.pantauansoal.index', compact('tahuns'));
+        return view('admin.dashboard.pantauansoal.index', $ppemantauan, compact('tahuns'));
     }
 
     /**

@@ -42,13 +42,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @for($i = 0; $i < count($rekap_pemantauan); $i++)
+                                
                                 <tr>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $rekap_pemantauan[$i]['tahun'] }}</td>
+                                    <td>{{ $rekap_pemantauan[$i]['bulan'] }}</td>
+                                    <td>{{ $rekap_pemantauan[$i]['pemantauan'] }}</td>
+                                    <td>{{ $rekap_pemantauan[$i]['rata_rata'] }}</td>
                                 </tr>
+                                @endfor
                             </tbody>
                         </table>
                     </div>

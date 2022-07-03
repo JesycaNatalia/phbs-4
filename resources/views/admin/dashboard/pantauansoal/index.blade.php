@@ -35,13 +35,9 @@
                         <label for="category" class="form-label">Pilih Kategori Pemantauan</label>
                         <select class="form-control" name="pemantauansoal" id="category">
                             <option hidden>--- Jenis Pemantauan ---</option>
-                            <option>Cuci tangan dengan sabun dan air bersih</option>
-                            <option>Menggunakan air bersih</option>
-                            <option>Menggunakan jamban sehat</option>
-                            <option>Memberantas jentik nyamuk</option>
-                            <option>Konsumsi buah dan sayur</option>
-                            <option>Melakukan aktivitas fisik setiap hari</option>
-                            <option>Tidak merokok di dalam rumah</option>
+                            @foreach($ppemantauans as $ppemantauan)
+                            <option value="{{ $ppemantauan->namapemantauan }}">{{ $ppemantauan->namapemantauan }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
