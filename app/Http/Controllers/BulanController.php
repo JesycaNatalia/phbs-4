@@ -6,10 +6,6 @@ use App\Models\Bulan;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
 use App\Models\Kuisoner;
-<<<<<<< HEAD
-
-=======
->>>>>>> eb8570bead9de82df8c8d120f27f4fe6c24667ec
 
 class BulanController extends Controller
 {

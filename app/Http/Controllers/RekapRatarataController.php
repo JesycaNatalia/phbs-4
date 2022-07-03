@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ResponUser;
+use App\Models\Kuisoner;
+use App\Models\IsiKuisoner;
 use App\Models\Bulan;
-use App\Models\Ppemantauan;
+use App\Models\JawabanUser;
 
 class RekapRatarataController extends Controller
 {
@@ -16,25 +17,49 @@ class RekapRatarataController extends Controller
      */
     public function index()
     {
+        $list_pemantauan = [
+          'Cuci tangan dengan sabun dan air bersih',
+          'Menggunakan air bersih',
+          'Menggunakan jamban sehat',
+          'Memberantas jentik nyamuk',
+          'Konsumsi buah dan sayur',
+          'Melakukan aktivitas fisik setiap hari',
+          'Tidak merokok di dalam rumah',
+        ];
+        // get nama bulan
         $bulans = Bulan::get();
-        $ppemantauans = Ppemantauan::get();
-        foreach($bulans as $bulan){
-            $all_respon_users = ResponUser::with('bulan', 'ppemantauan')->where('bulan_id', $bulan->id)->get();       
-            foreach($ppemantauans as $key=>$pemantauan){
-                foreach($all_respon_users as $all_respon_user){
-                    if($all_respon_user->ppemantauan_id == $pemantauan->id){
-                        $rekap_pemantauan[$key]['hitung'] = 0;
-                        foreach($all_respon_users as $all_respon_user){
-                            $rekap_pemantauan[$key]['hitung'] = $rekap_pemantauan[$key]['hitung'] + $all_respon_user->total_skor;
-                        }
-                        $rekap_pemantauan[$key]['rata_rata'] = $all_respon_users->count() == 0 ? 0 : $rekap_pemantauan[$key]['hitung'] / $all_respon_users->count();
-                        $rekap_pemantauan[$key]['pemantauan'] = $pemantauan->namapemantauan;
-                        $rekap_pemantauan[$key]['bulan'] = $bulan->bulan;
-                        $rekap_pemantauan[$key]['tahun'] = $bulan->tahun;
-                    }
+        $rekap_pemantauan = array();
+        foreach ($bulans as $index => $bulan) {
+            for($j=0; $j<count($list_pemantauan); $j++){
+                $pertanyaan = Kuisoner::where('pertanyaan', 'LIKE', '%' . $list_pemantauan[$j] . '%')->first();
+                $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
+                $skorperbulan = array();
+        
+                // cek skor dengan perulangan
+                for ($i = 3; $i >= 1; $i--) {
+                    $skor = JawabanUser::where('bulan_id', $bulan->id)
+                        ->whereHas(
+                            'isi_kuisoner',
+                            function ($query) use ($i) {
+                                return $query->where('skor', $i);
+                            }
+                        )->where('kuisoner_id', $pertanyaan->id)->count();
+                    array_push($skorperbulan, $skor);
                 }
+                $a = $skorperbulan[0] * 3;
+                $b = $skorperbulan[1] * 2;
+                $c = $skorperbulan[2] * 1;
+    
+                $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
+                array_push($skorperbulan, $ratarata);
+                $skorperbulan = array();
+                $rekap_pemantauan[$index]['bulan'] = $bulan->bulan;
+                $rekap_pemantauan[$index]['tahun'] = $bulan->tahun;
+                $rekap_pemantauan[$index]['data'][$j]['pertanyaan'] = $pertanyaan->pertanyaan;
+                $rekap_pemantauan[$index]['data'][$j]['rata_rata'] = $ratarata;
             }
         }
+        // dd($rekap_pemantauan);
         return view('admin.dashboard.rekapratarata.index', compact('rekap_pemantauan'));
     }
 

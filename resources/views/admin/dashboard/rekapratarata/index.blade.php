@@ -48,8 +48,24 @@
                                     <td></td>
                                     <td>{{ $rekap_pemantauan[$i]['tahun'] }}</td>
                                     <td>{{ $rekap_pemantauan[$i]['bulan'] }}</td>
-                                    <td>{{ $rekap_pemantauan[$i]['pemantauan'] }}</td>
-                                    <td>{{ $rekap_pemantauan[$i]['rata_rata'] }}</td>
+                                    <td>
+                                        @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++)
+                                        <table>
+                                            <tr>
+                                                <td>{{ $rekap_pemantauan[$i]['data'][$j]['pertanyaan'] }}</td>
+                                            </tr>
+                                        </table>
+                                        @endfor
+                                    </td>
+                                    <td>
+                                        @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++)
+                                        <table>
+                                            <tr>
+                                                <td>{{ $rekap_pemantauan[$i]['data'][$j]['rata_rata'] }}</td>
+                                            </tr>
+                                        </table>
+                                        @endfor
+                                    </td>
                                 </tr>
                                 @endfor
                             </tbody>
