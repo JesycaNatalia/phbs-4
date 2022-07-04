@@ -4,18 +4,15 @@
 
 @section('style')
 @endsection
-<<<<<<< HEAD
 
 @section('content')
-=======
->>>>>>> eb8570bead9de82df8c8d120f27f4fe6c24667ec
 
 <div class="card col-xl-11 col-md-6">
     <div class="card-header">
     </div>
     <div class="card-body">
         <center>
-            <h4> {{$all_respon_users->first()->ppemantauan->namapemantauan}} </h4>
+            <h4> {{$ppemantauan->namapemantauan}} </h4>
         </center>
     </div>
 </div>
@@ -108,12 +105,6 @@ array("label" => "Desember", "y" => $desember / $total_warga * 100)
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
-<<<<<<< HEAD
-
 @endsection
-
-=======
-@endsection
->>>>>>> eb8570bead9de82df8c8d120f27f4fe6c24667ec
 @section('script')
 @endsection
