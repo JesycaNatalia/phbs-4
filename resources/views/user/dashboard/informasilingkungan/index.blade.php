@@ -24,20 +24,20 @@
 
 <div class="card">
     <div class="card-header">
-        Pemantauan Lingkungan RT/RW Makmur Bulan !
+        Pemantauan Lingkungan RT/RW Makmur Bulan {{$rekap_user['bulan']}}!
     </div>
     <div class="card-body">
         <center>
             <h5 class="card-title">Hasil Pemantauan </h5>
-            <p class="card-text">Rata-Rata Pemantauan Tertinggi : (skor & nama pemantauannya)</p>
-            <p class="card-text">Rata-Rata Pemantauan Terendah : (skor & nama pemantauannya)</p>
+            <p class="card-text">Rata-Rata Pemantauan Tertinggi : {{$rekap_user['max']}} || {{$rekap_user['pertanyaan_max']}}</p>
+            <p class="card-text">Rata-Rata Pemantauan Terendah : {{$rekap_user['min']}} || {{$rekap_user['pertanyaan_min']}}</p>
         </center>
 
         <br>
 
         <center>
             <h5>Melihat rata-rata pemantauan terendah bulan ini, maka berikut diberikan saran kepada warga</h5>
-            <hp>Saran : (Ini ambil saran yang diinput bareng tabel kuisoner, saran yg muncul sesuai sama rata-rata terendah)</hp>
+            <hp>Saran : {{ $rekap_user['saran'] }}</hp>
         </center>
 
     </div>
