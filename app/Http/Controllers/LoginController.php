@@ -40,6 +40,20 @@ class LoginController extends Controller
         return view('auth.register');
     }
 
+    public function reset_password()
+    {
+        return view('auth.passwords.reset');
+    }
+
+    public function update_password(Request $request)
+    {
+        $user = User::where('nik', $request->nik)->first();
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
+        return view('auth.login');
+    }
+
     public function register(Request $request)
     {
         $data_kk = KartuKeluarga::where('no_kk', $request->no_kk)->first();
@@ -52,6 +66,7 @@ class LoginController extends Controller
         }
 
         $user = User::create([
+            'nik' => $request->nik,
             'nama' => $request->nama,
             'kartu_keluarga_id' => $kartu_keluarga->id,
             'status_kepala' => $request->status_kepala,

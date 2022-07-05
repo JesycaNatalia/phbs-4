@@ -24,6 +24,7 @@ class User extends Authenticatable
         'jenis_kelamin',
         'role',
         'password',
+        'nik',
     ];
 
     /**

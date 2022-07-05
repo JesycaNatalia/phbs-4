@@ -57,6 +57,12 @@
 
                 <div class="form-group m-b-15">
 					<input type="text"
+						class="form-control form-control-lg" name="nik"
+						required placeholder="Nik" />
+				</div>
+
+				<div class="form-group m-b-15">
+					<input type="text"
 						class="form-control form-control-lg" name="no_kk"
 						required placeholder="No KK" />
 				</div>

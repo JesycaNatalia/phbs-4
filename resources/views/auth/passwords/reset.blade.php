@@ -30,15 +30,14 @@
                 {{ session('status') }}
             </div>
             @endif
-            <form action="{{ request()->routeIs('admin*') ? route('admin.password.update') : route('password.update') }}" method="POST" class="margin-bottom-0">
+            <form action="{{ route('reset') }}" method="POST" class="margin-bottom-0">
                 @csrf
-                <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                 <div class="form-group m-b-15">
 
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $request->email ?? old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail Address') }}">
+                    <input id="nik" type="nik" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ $request->nik ?? old('nik') }}" required autocomplete="nik" placeholder="{{ __('NIK') }}">
 
-                    @error('email')
+                    @error('nik')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

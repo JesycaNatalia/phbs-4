@@ -34,6 +34,8 @@ use App\Http\Controllers\RekapController;
 // Route::resource('gform', GformController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/reset', [LoginController::class, 'reset_password'])->name('reset')->middleware('guest');
+Route::post('/reset', [LoginController::class, 'update_password']);
 Route::get('/register', [LoginController::class, 'index_register'])->name('register')->middleware('guest');
 Route::post('/register', [LoginController::class, 'register']);
 
