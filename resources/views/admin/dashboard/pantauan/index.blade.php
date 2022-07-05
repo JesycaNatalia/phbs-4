@@ -68,7 +68,7 @@
                                     <td>
                                         @php
                                         $total_skor = $respon_user->total_skor;
-                                        $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
+                                        $perbandingan = (($kuisoner * 3) / 2) - ($respon_user->skor_nol * 3);
                                         $sehat = '';
 
                                         if($total_skor > $perbandingan ){
