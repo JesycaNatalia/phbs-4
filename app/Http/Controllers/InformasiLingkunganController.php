@@ -45,7 +45,7 @@ class InformasiLingkunganController extends Controller
                         function ($query) use ($i) {
                             return $query->where('skor', $i);
                         }
-                    )->where([['kuisoner_id', $pertanyaan->id], ['user_id', Auth::user()->id]])->count();
+                    )->where('kuisoner_id', $pertanyaan->id)->count();
                 array_push($skorperbulan, $skor);
             }
             $a = $skorperbulan[0] * 3;
@@ -78,7 +78,7 @@ class InformasiLingkunganController extends Controller
         $rekap_user['pertanyaan_min'] = $nilai_rata['data_pemantauan'][array_search(min($nilai_rata['data']), $nilai_rata['data'])];
         $rekap_user['saran'] = $saran->saran ?? 'Tidak ada saran';
         
-        // dd($rekap_user);
+        // dd($rekap_pemantauan['data']);
         return view('user.dashboard.informasilingkungan.index', compact('rekap_user'));
     }
 
