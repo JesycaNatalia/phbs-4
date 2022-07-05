@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MonthlyUserChart;
 use App\Models\KartuKeluarga;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
@@ -15,13 +16,13 @@ class AdashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MonthlyUserChart $chart)
     {
-        
+
         $user = KartuKeluarga::count();
         $kuisoner = Kuisoner::count();
         $all_respon_user['all_respon_users'] = ResponUser::with('bulan')->get();
-        return view('admin.dashboard.dashboard.index', $all_respon_user, compact('user', 'kuisoner'));
+        return view('admin.dashboard.dashboard.index', ['chart' => $chart->build()], $all_respon_user, compact('user', 'kuisoner'));
     }
 
     /**

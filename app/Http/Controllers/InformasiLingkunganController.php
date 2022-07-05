@@ -31,8 +31,8 @@ class InformasiLingkunganController extends Controller
         // get nama bulan
         $bulan = Bulan::orderBy('id', 'desc')->first();
         $rekap_pemantauan = array();
-        
-        for($j=0; $j<count($list_pemantauan); $j++){
+
+        for ($j = 0; $j < count($list_pemantauan); $j++) {
             $pertanyaan = Kuisoner::where('pertanyaan', 'LIKE', '%' . $list_pemantauan[$j] . '%')->first();
             $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
             $skorperbulan = array();
@@ -60,12 +60,13 @@ class InformasiLingkunganController extends Controller
             $rekap_pemantauan['data'][$j]['pertanyaan'] = $pertanyaan->pertanyaan;
             $rekap_pemantauan['data'][$j]['rata_rata'] = $ratarata;
             $rekap_pemantauan['data'][$j]['id'] = $pertanyaan->id;
+            // dd($rekap_pemantauan['data']);
         }
 
         $rekap_user = array();
         $nilai_rata = array();
-        
-        for($j=0; $j<count($rekap_pemantauan['data']); $j++){
+
+        for ($j = 0; $j < count($rekap_pemantauan['data']); $j++) {
             $nilai_rata['data'][$j] = $rekap_pemantauan['data'][$j]['rata_rata'];
             $nilai_rata['data_pemantauan'][$j] = $rekap_pemantauan['data'][$j]['pertanyaan'];
         }
@@ -77,7 +78,7 @@ class InformasiLingkunganController extends Controller
         $rekap_user['pertanyaan_max'] = $nilai_rata['data_pemantauan'][array_search(max($nilai_rata['data']), $nilai_rata['data'])];
         $rekap_user['pertanyaan_min'] = $nilai_rata['data_pemantauan'][array_search(min($nilai_rata['data']), $nilai_rata['data'])];
         $rekap_user['saran'] = $saran->saran ?? 'Tidak ada saran';
-        
+
         // dd($rekap_user);
         return view('user.dashboard.informasilingkungan.index', compact('rekap_user'));
     }
