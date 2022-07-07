@@ -72,7 +72,7 @@
                                         $perbandingan = '2';
                                         $sehat = '';
 
-                                        if($rata_rata_skor > $perbandingan ){
+                                        if($rata_rata_skor >= $perbandingan ){
                                         $sehat = 'Sehat';
                                         }else{
                                         $sehat = 'Belum Sehat';
