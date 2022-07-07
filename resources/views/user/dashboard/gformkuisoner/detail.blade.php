@@ -18,10 +18,11 @@
             <h5 class="card-title">Terimakasih Sudah Mengisi Form Pemantauan</h5>
             @php
             $total_skor = $respon_users->last()->total_skor;
-            $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner * 3) / 2);
+            $rata_rata_skor = ($respon_users->last()->total_skor)/($kuisoner - $respon_users->last()->skor_nol);
+            $perbandingan = '2';
             $sehat = '';
 
-            if($total_skor > $perbandingan){
+            if($rata_rata_skor >= $perbandingan){
             $sehat = 'Keluarga anda masuk kategori hidup sehat';
             }else{
             $sehat = 'Keluarga anda belum masuk kategori hidup sehat';
