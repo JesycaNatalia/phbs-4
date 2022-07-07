@@ -34,7 +34,7 @@ class AdashboardController extends Controller
         $november = 0;
         $desember = 0;
 
-        //belumsehat
+        //sehat
         $_januari = 0;
         $_februari = 0;
         $_maret = 0;
@@ -51,73 +51,73 @@ class AdashboardController extends Controller
             $rata_rata_skor = ($all_respon_user->total_skor)/($kuisoner->where('ppemantauan_id', $all_respon_user->ppemantauan_id)->count() - $all_respon_user->skor_nol);
             $perbandingan = '2';
             if($all_respon_user->bulan->bulan == 'Januari'){
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $januari++;
                 } else {
                     $_januari++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Februari') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $februari++;
                 } else {
                     $_februari++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Maret') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $maret++;
                 } else {
                     $_maret++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'April') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $april++;
                 } else {
                     $_april++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Mei') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $mei++;
                 } else {
                     $_mei++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Juni') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $juni++;
                 } else {
                     $_juni++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Juli') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $juli++;
                 } else {
                     $_juli++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Agustus') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $agustus++;
                 } else {
                     $_agustus++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'September') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $september++;
                 } else {
                     $_september++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Oktober') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $oktober++;
                 } else {
                     $_oktober++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'November') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $november++;
                 } else {
                     $_november++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Desember') {
-                if($rata_rata_skor > $perbandingan){
+                if($rata_rata_skor >= $perbandingan){
                     $desember++;
                 } else {
                     $_desember++;
