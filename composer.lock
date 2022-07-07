@@ -63,10 +63,6 @@
                 "charts",
                 "larapex"
             ],
-            "support": {
-                "issues": "https://github.com/ArielMejiaDev/larapex-charts/issues",
-                "source": "https://github.com/ArielMejiaDev/larapex-charts/tree/4.0.0"
-            },
             "time": "2022-03-10T14:16:46+00:00"
         },
         {
@@ -8066,5 +8062,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "1.1.0"
 }
