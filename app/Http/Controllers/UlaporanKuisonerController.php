@@ -40,7 +40,6 @@ class UlaporanKuisonerController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

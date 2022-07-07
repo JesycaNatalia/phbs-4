@@ -35,13 +35,13 @@ class KuisonerController extends Controller
      */
     public function store(Request $request)
     {
-        Kuisoner::create([
+        $kuisoner = Kuisoner::create([
             'ppemantauan_id' => $request->ppemantauan_id,
             'pertanyaan' => $request->pertanyaan,
             'penjelasan' => $request->penjelasan ?? ''
         ]);
 
-        return redirect()->back()->with("OK", "Berhasil ditambahkan.");
+        return redirect(route('admin.dashboard.jawaban.show', $kuisoner->id))->with("OK", "Berhasil ditambahkan.");
     }
 
     /**

@@ -25,12 +25,14 @@
         <div class="row">
             <div class="col">
                 <table>
-                    <tr>
+                    <tr class="pertanyaan">
                         <!-- <input type="hidden" name="kuisoner_id" value="{{$kuisoner->id}}"> -->
                         <td>{{ $index++ }}. {{ $kuisoner->pertanyaan }}</td>
                     </tr>
+                    <br>
                     <tr>
                         <td>
+                            <br>
                             @foreach($kuisoner->jawaban as $jawaban)
                             <p><input type='radio' name='{{$kuisoner->id}}' value='{{$jawaban->id}}' required />
                                 {{$jawaban->jawaban}}
@@ -71,9 +73,10 @@
             </div>
         </div>
     </div>
+    <hr>
     @endforeach
     <input type="hidden" name="ppemantauan_id" value="{{$kuisoner->ppemantauan_id}}">
-    <button type="submit" class="btn btn-block btn-info">Kirim</button>
+    <button type="submit" class="btn btn-1 btn-block btn-primary">Kirim</button>
 </form>
 @endsection
 

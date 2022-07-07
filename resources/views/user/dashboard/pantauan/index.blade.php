@@ -46,7 +46,8 @@
                                 @foreach($respon_users as $respon_user)
                                 @php
                                 $total_skor = $respon_user->total_skor;
-                                $perbandingan = ($respon_user->skor_nol * 3) - ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
+                                $rata_rata_skor = ($respon_user->total_skor)/(count($kuisoner) - $respon_user->skor_nol);
+                                $perbandingan = (($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3)- ($respon_user->skor_nol * 3) ) / 2; //ini *3 karna 3 adalah skor tertinggi dan dibagi 2 untuk menghitung nilai tengahnya buat jadi pacuan sehat dan tidak
                                 @endphp
                                 {{-- kode diatas untuk menghitung nilai sehat dan tidak --}}
                                 <tr>
@@ -55,7 +56,7 @@
                                     <td>{{ $respon_user->bulan->tahun }}</td>
                                     <td>{{ $respon_user->bulan->bulan }}</td>
                                     <td>{{ $respon_user->total_skor }}</td>
-                                    <td>@if($total_skor > $perbandingan)
+                                    <td>@if($rata_rata_skor >= 2)
                                         Sehat
                                         @else
                                         Belum Sehat

@@ -14,6 +14,7 @@ use App\Http\Controllers\PantauanController;
 use App\Http\Controllers\PantauanSoalController;
 use App\Http\Controllers\PilihPemantauanController;
 use App\Http\Controllers\UpilihPemantauanController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RekapRatarataController;
 use App\Http\Controllers\SaranPemantauanController;
 use App\Http\Controllers\InformasiLingkunganController;
@@ -32,6 +33,8 @@ use App\Http\Controllers\RekapController;
 
 
 // Route::resource('gform', GformController::class);
+Route::resource('/', LandingPageController::class);
+Route::view('informasilanding', 'informasilanding');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/reset', [LoginController::class, 'reset_password'])->name('reset')->middleware('guest');

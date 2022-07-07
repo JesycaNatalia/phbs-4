@@ -45,7 +45,7 @@ class InformasiLingkunganController extends Controller
                         function ($query) use ($i) {
                             return $query->where('skor', $i);
                         }
-                    )->where([['kuisoner_id', $pertanyaan->id], ['user_id', Auth::user()->id]])->count();
+                    )->where('kuisoner_id', $pertanyaan->id)->count();
                 array_push($skorperbulan, $skor);
             }
             $a = $skorperbulan[0] * 3;
