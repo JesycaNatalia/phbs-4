@@ -68,10 +68,11 @@
                                     <td>
                                         @php
                                         $total_skor = $respon_user->total_skor;
-                                        $perbandingan = (($kuisoner * 3) / 2) - ($respon_user->skor_nol * 3);
+                                        $rata_rata_skor = ($respon_user->total_skor)/($kuisoner - $respon_user->skor_nol);
+                                        $perbandingan = '2';
                                         $sehat = '';
 
-                                        if($total_skor > $perbandingan ){
+                                        if($rata_rata_skor > $perbandingan ){
                                         $sehat = 'Sehat';
                                         }else{
                                         $sehat = 'Belum Sehat';
