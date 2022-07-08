@@ -65,22 +65,27 @@ class LoginController extends Controller
             $kartu_keluarga = $data_kk;
         }
 
-        $user = User::create([
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'kartu_keluarga_id' => $kartu_keluarga->id,
-            'status_kepala' => $request->status_kepala,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'password' => bcrypt($request->password),
-            'role' => 'user'
-        ]);
-
-        StatusKeluarga::create([
-            'kartu_keluarga_id' => $kartu_keluarga->id,
-            'user_id' => $user->id,
-        ]);
-
-        return view('auth.login');
+        $checker = User::where('nik', $request->nik)->first();
+        if($checker == null){
+            $user = User::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'kartu_keluarga_id' => $kartu_keluarga->id,
+                'status_kepala' => $request->status_kepala,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'password' => bcrypt($request->password),
+                'role' => 'user'
+            ]);
+    
+            StatusKeluarga::create([
+                'kartu_keluarga_id' => $kartu_keluarga->id,
+                'user_id' => $user->id,
+            ]);
+    
+            return view('auth.login');
+        } else {
+            echo 'Nik sudah terdaftar';
+        }
     }
 
     public function logout()
