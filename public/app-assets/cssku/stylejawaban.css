@@ -1,0 +1,19 @@
+h3{
+    border-top: 10px solid rgba(52, 57, 66, 0.8);
+ }
+ .form{
+     background-color: rgb(246, 246, 246);
+     box-shadow: 2px 2px 2px rgba(91, 111, 142, 0.8);
+ }
+ .container{
+     width: 800px;
+ }
+
+ .coba{
+    background-color: rgb(246, 246, 246);
+    box-shadow: 2px 2px 2px 2px rgba(91, 111, 142, 0.8);
+ }
+
+ .pertanyaan{
+    font-size: 17px;
+}

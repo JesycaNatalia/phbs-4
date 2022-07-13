@@ -10,7 +10,8 @@
 <!-- BEGIN: Head-->
 
 <head>
-    <script src="https://kit.fontawesome.com/2290a955fa.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/2290a955fa.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/12151cdf8e.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -130,20 +131,20 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard.adashboard.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-chart-line" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard.bulan.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-calendar" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Bulan</span>
                     </a>
                 </li>
                 <li class="nav-item has-sub">
                     <a href="#">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-regular fa-file-lines" style=" visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Kuisoner</span>
                     </a>
                     <ul class="menu-content" style="">
@@ -153,7 +154,7 @@
                 </li>
                 <li class="nav-item has-sub">
                     <a href="#">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-info" style="visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Pantauan</span>
                     </a>
                     <ul class="menu-content" style="">
@@ -172,7 +173,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard.grafik.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-chart-column"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Grafik</span>
                     </a>
                 </li>

@@ -1,10 +1,10 @@
-
 @extends('user.layouts.udashboard')
 
-@section('title', 'Isi Kuisoner')
+@section('title', 'Rekam Jawaban')
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="/app-assets/cssku/style.css">
+<link rel="stylesheet" type="text/css" href="/app-assets/cssku/stylejawaban.css">
+
 @endsection
 
 @section('content')
@@ -12,37 +12,39 @@
 <div class="form">
     <center>
         <h3>
-            <strong> FORM KUISONER <br> HIDUP BERSIH KELUARGA </strong>
+            <strong> REKAM<br> HASIL ISI KUISIONER </strong>
         </h3>
     </center>
 </div>
 <hr>
 <br>
-    
-    @php $index=1 @endphp
-    @foreach($kuisoners as $kuisoner)
+
+@php $index=1 @endphp
+@foreach($kuisoners as $kuisoner)
+<div class="coba">
     <div class="container">
         <div class="row">
             <div class="col">
                 <table>
-                    <tr>
+                    <tr class="pertanyaan">
                         <td>{{ $index++ }}. {{ $kuisoner->pertanyaan }}</td>
                     </tr>
+                    <br>
                     <tr>
                         <td>
-                            
+                            <br>
                             @php
                             $jawabanuser = ''
                             @endphp
                             @foreach ($jawaban_users as $jawaban_user)
-                                @php 
-                                if($jawaban_user->kuisoner_id == $kuisoner->id){
-                                    $jawabanuser = $jawaban_user->isi_kuisoner->id;
-                                } 
-                                @endphp
+                            @php
+                            if($jawaban_user->kuisoner_id == $kuisoner->id){
+                            $jawabanuser = $jawaban_user->isi_kuisoner->id;
+                            }
+                            @endphp
                             @endforeach
                             @foreach($kuisoner->jawaban as $jawaban)
-                            <p><input type='radio' name='{{$kuisoner->id}}' value='{{$jawaban->id}}' @checked($jawabanuser == $jawaban->id) disabled required />
+                            <p><input type='radio' name='{{$kuisoner->id}}' value='{{$jawaban->id}}' @checked($jawabanuser==$jawaban->id) disabled required />
                                 {{$jawaban->jawaban}}
                             </p>
                             @endforeach
@@ -81,7 +83,8 @@
             </div>
         </div>
     </div>
-    @endforeach
+</div>
+@endforeach
 
 @endsection
 

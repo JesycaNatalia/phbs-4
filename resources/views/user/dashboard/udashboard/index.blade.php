@@ -19,7 +19,12 @@ $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kart
     </div>
     <div class="card-body">
         <center>
-            <h4> {{ $status }}</h4>
+            <button type="button" class="btn btn-outline-danger">
+                <h4>
+                    {{ $status }}
+                </h4>
+            </button>
+
         </center>
         <!-- jadi nanti ada pengkondisian disini, kalo udah ngisi berarti cardnya -->
     </div>
@@ -86,13 +91,12 @@ $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kart
                 <br>
                 <div class="stats-info">
                     @php
-
-                    $total_skor = $respon_users->last()->total_skor;
-                    $perbandingan = ($respon_users->last()->skor_nol * 3) - (($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2);
-                    // $perbandingan = ($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() * 3) / 2;
+                    $total_skor = $respon_user->total_skor;
+                    $rata_rata_skor = ($respon_user->total_skor)/($kuisoner->where('ppemantauan_id', $respon_user->ppemantauan_id)->count() - $respon_user->skor_nol);
+                    $perbandingan = '2';
                     @endphp
                     {{-- kode diatas untuk menghitung nilai sehat dan tidak --}}
-                    @if($total_skor > $perbandingan )
+                    @if($rata_rata_skor >= $perbandingan)
                     <center>
                         <h4>KATEGORI</h4> <!-- total berapa kali kepala keluarga isi kuisoner -->
                         <hr>
@@ -134,14 +138,15 @@ $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kart
     $sehat = 0;
     $belum_sehat = 0;
     foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
-    $perbandingan = (($kuisoner->count() * 3) / 2) - ($all_respon_user->skor_nol * 3);
+    $rata_rata_skor = ($all_respon_user->total_skor)/($kuisoner->where('ppemantauan_id', $all_respon_user->ppemantauan_id)->count() - $all_respon_user->skor_nol); $perbandingan = '2';
+    $$perbandingan = '2';
     $total_skor_user = 0;
     foreach($all_respon_users as $keluarga_respon){
     if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
     $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
     }
     }
-    if($total_skor_user > $perbandingan){
+    if($rata_rata_skor >= $perbandingan){
     $sehat++;
     } else {
     $belum_sehat++;

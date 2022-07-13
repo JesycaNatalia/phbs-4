@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\KartuKeluarga;
-use App\Models\StatusKeluarga;
 use App\Models\Kuisoner;
 use App\Models\Ppemantauan;
+use Illuminate\Http\Request;
+use App\Models\KartuKeluarga;
+use App\Models\StatusKeluarga;
+use Illuminate\Support\Facades\Auth;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        // buat request nama login sesuai dengan username yang dimasukkan
         $user = User::where('nama', $request->nama)->first();
         if ($user == null) {
             return redirect()->back()->with('ERR', 'Nama yang Anda masukkan tidak terdaftar.');
@@ -27,11 +29,14 @@ class LoginController extends Controller
             return redirect()->back()->with('ERR', 'Password yang Anda masukkan salah.');
         }
 
-        $ppemantauan['ppemantauan'] = Ppemantauan::get();
+        // pengkondisian buat halaman yang muncul setelah login
+        // variabel chart diinisialisaiin karena di halaman view dashboard itu ada variabel chart
+        $chart = (new LarapexChart)->areaChart();
         if (Auth::user()->role == 'admin') {
-            return view('admin.dashboard.ppemantauan.index', $ppemantauan);
+            return view('admin.dashboard.dashboard.index',  ['chart' => $chart]);
         } else {
-            return redirect()->route('user.dashboard.laporankuisoner.index');
+            // di halaman view dashboard user ga ada variabel yang dipake, makanya jesyy ga inisialisasiin apa apa
+            return redirect()->route('user.dashboard.dashboard.index');
         }
     }
 

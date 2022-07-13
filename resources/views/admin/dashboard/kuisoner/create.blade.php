@@ -48,6 +48,8 @@
                                 <div class="form-group mb-50">
                                     <label class="text-bold-600">Penjelasan</label>
                                     <textarea name="penjelasan" class="form-control" cols="30" rows="10" placeholder="e.g: Cuci tangan dengan sabun adalah kebutuhan"></textarea>
+
+                                    <!-- ppemantauan id itu buat relasi antara pertanyaan sama jenis pemanatauannya dihidden karena ini cuma dibutuhkan sebagai relasi saja -->
                                     <input type="hidden" name="ppemantauan_id" value="{{ request()->id }}">
                                 </div>
                             </div>

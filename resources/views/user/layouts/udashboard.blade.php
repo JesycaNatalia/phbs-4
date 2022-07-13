@@ -147,7 +147,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('user.dashboard.rekap.index') }}">
-                        <i class="fa-regular fa-file-lines" style=" visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-calendar" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Rekap Bulanan</span>
                     </a>
                 </li>
