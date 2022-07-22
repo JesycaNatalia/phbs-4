@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\KartuKeluarga;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
 use App\Models\Kuisoner;
+use App\Models\Bulan;
 use App\Models\User;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
@@ -18,9 +20,12 @@ class AdashboardController extends Controller
      */
     public function index()
     {
-        $user = KartuKeluarga::count();
+
+        $bulan = Bulan::orderBy('id', 'desc')->first();
+        $userr = KartuKeluarga::count();
         $kuisoner = Kuisoner::get();
         $all_respon_users = ResponUser::with('bulan')->get();
+        $itung = ResponUser::where('bulan_id', $bulan->id)->get()->count();
         $januari = 0;
         $februari = 0;
         $maret = 0;
@@ -33,7 +38,6 @@ class AdashboardController extends Controller
         $oktober = 0;
         $november = 0;
         $desember = 0;
-
         //belumsehat
         $_januari = 0;
         $_februari = 0;
@@ -132,7 +136,7 @@ class AdashboardController extends Controller
             ->setXAxis(
                 ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
             );
-        return view('admin.dashboard.dashboard.index', ['chart' => $chart], compact('user', 'kuisoner'));
+        return view('admin.dashboard.dashboard.index', ['chart' => $chart, 'itung' => $itung], compact('userr', 'kuisoner', 'bulan'));
     }
 
     /**

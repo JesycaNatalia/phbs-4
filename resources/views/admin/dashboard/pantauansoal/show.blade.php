@@ -47,7 +47,8 @@
                                 @php
                                 $bulans = session()->get('bulans');
                                 @endphp
-                                @for($i=0; $i< count($bulans); $i++) <tr> // [Januari, Februari]
+                                @for($i=0; $i< count($bulans); $i++) <tr>
+                                    <!--  // [Januari, Februari] -->
                                     <td></td>
                                     <td>{{ $bulans[$i] -> tahun }}</td>
                                     <td>{{ $bulans[$i] -> bulan }}</td>

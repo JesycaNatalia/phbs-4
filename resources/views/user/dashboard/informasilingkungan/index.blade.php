@@ -15,6 +15,7 @@
     <div class="card">
         <div class="card-header">
             <div class="card-body">
+                @if($rekap_user['min'] != 0 && $rekap_user['max'] != 0)
                 <div class="row">
                     <div class="col-md-5">
                         <h4>Rata-Rata Pemantauan Tertinggi</h4>
@@ -37,6 +38,9 @@
                     <br>
                     <p>Saran : {{ $rekap_user['saran'] }}</p>
                 </center>
+                @else
+                belum ngisi
+                @endif
             </div>
         </div>
     </div>

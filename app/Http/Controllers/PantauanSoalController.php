@@ -88,7 +88,7 @@ class PantauanSoalController extends Controller
             $skorperbulan = array();
         }
         // dd($skors);
-        return redirect()->route('admin.dashboard.pantauansoal.laporan')->with([
+        return redirect()->route('pantauansoal.laporan')->with([
             'pertanyaan' => $pertanyaan->pertanyaan,
             'isi_kuisoner' => $isi_kuisoner,
             'bulans' => $bulans,

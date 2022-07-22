@@ -52,7 +52,12 @@ class InformasiLingkunganController extends Controller
             $b = $skorperbulan[1] * 2;
             $c = $skorperbulan[2] * 1;
 
-            $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
+            if (array_sum($skorperbulan) == 0) {
+                $ratarata = 0;
+            } else {
+                $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
+            }
+
             array_push($skorperbulan, $ratarata);
             $skorperbulan = array();
             $rekap_pemantauan['bulan'] = $bulan->bulan;
@@ -80,6 +85,7 @@ class InformasiLingkunganController extends Controller
         $rekap_user['saran'] = $saran->saran ?? 'Tidak ada saran';
 
         // dd($rekap_user);
+
         return view('user.dashboard.informasilingkungan.index', compact('rekap_user'));
     }
 

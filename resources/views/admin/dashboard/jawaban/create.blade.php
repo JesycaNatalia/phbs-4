@@ -17,7 +17,10 @@
             <h5 class="content-header-title float-left pr-1 mb-0">Jawaban</h5>
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:history.back(-3);">
+                            <i class="fa fa-arrow-circle-left"></i>
+                        </a>
                     </li>
                     <li class="breadcrumb-item active">Tambah Jawaban
                     </li>
@@ -39,15 +42,13 @@
                             <div class="form-group mb-50">
                                 <div class="form-group mb-50">
                                     <label class="text-bold-600">Jawaban <span class="text-danger">*</span></label>
-                                    <input type="text" name="jawaban" id="title" class="form-control"
-                                        placeholder="e.g: Sering" required>
+                                    <input type="text" name="jawaban" id="title" class="form-control" placeholder="e.g: Sering" required>
                                 </div>
                             </div>
                             <div class="form-group mb-50">
                                 <div class="form-group mb-50">
                                     <label class="text-bold-600">Skor <span class="text-danger">*</span></label>
-                                    <input type="number" name="skor" id="title" class="form-control"
-                                        placeholder="e.g: 3" required>
+                                    <input type="number" name="skor" id="title" class="form-control" placeholder="e.g: 3" required>
                                     <input type="hidden" name="kuisoner_id" value="{{ request()->id }}">
                                 </div>
                             </div>

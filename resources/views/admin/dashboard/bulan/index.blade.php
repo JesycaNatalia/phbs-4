@@ -32,7 +32,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table datatable table-responsive" style="width: 100%">
+                        <form action="{{route('admin.dashboard.bulan.index')}}" method="GET">
+                            <div class="input-group mb-3" style="width: 50%;">
+                                <input type="text" class="form-control" placeholder="Search..." name="search" value="">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
+                        <table class="table  table-responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
@@ -42,13 +48,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $no = 1; @endphp
                                 @foreach ($bulans as $bulan)
                                 <tr>
-                                    <td></td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $bulan->bulan }}</td>
                                     <td>{{ $bulan->tahun }}</td>
                                     <td>
-                                        <div class="btn-group btn-group-sm">
+                                        <div class=" btn-group btn-group-sm">
                                             <a href="{{ route('admin.dashboard.bulan.show', $bulan->id) }}" class="btn btn-warning">Detail</a>
                                             <a href="{{ route('admin.dashboard.bulan.edit', $bulan->id) }}" class="btn btn-info">Edit</a>
                                             <button class="btn btn-danger deleteButton" value="{{ $bulan->id }}">Hapus</button>

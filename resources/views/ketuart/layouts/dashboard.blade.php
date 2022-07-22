@@ -129,39 +129,13 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content ps">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                @if (auth()->check() && auth()->user()->role === 'admin')
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard.adashboard.index') }}">
+                    <a href="{{ route('ketuartdashboard.index') }}">
                         <i class="fa-solid fa-chart-line" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboard.bulan.index') }}">
-                        <i class="fa-solid fa-calendar" style="visibility: visible; width: 60px; "></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Bulan</span>
-                    </a>
-                </li>
-                <li class="nav-item has-sub">
-                    <a href="#">
-                        <i class="fa-regular fa-file-lines" style=" visibility: visible; width: 60px;"></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Kuisioner</span>
-                    </a>
-                    <ul class="menu-content" style="">
-                        <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.pilihpemantauan.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Jenis Pemantauan</span></a>
-                        </li>
-                    </ul>
-                </li>
-                @endif
 
-                @if (auth()->check() && auth()->user()->role === 'ketuart')
-                <li class="nav-item">
-                    <a href="{{ route('ketuartdashboard.index') }}">
-                        <i class="fa-solid fa-chart-column"></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Dashboard</span>
-                    </a>
-                </li>
-                @endif
                 <li class="nav-item has-sub">
                     <a href="#">
                         <i class="fa-solid fa-info" style="visibility: visible; width: 60px;"></i>
@@ -172,22 +146,14 @@
                         </li>
                     </ul>
                     <ul class="menu-content" style="">
-                        <li class=""><a class="d-flex align-items-center" href="{{ route('pantauansoal.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Per Soal</span></a>
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.pantauansoal.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Per Soal</span></a>
                         </li>
                     </ul>
                     <ul class="menu-content" style="">
-                        <li class=""><a class="d-flex align-items-center" href="{{ route('rekapratarata.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Rekap Rata-Rata</span></a>
+                        <li class=""><a class="d-flex align-items-center" href="{{ route('admin.dashboard.rekapratarata.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Laporan Rekap Rata-Rata</span></a>
                         </li>
                     </ul>
                 </li>
-                @if (auth()->check() && auth()->user()->role === 'admin')
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboard.grafik.index') }}">
-                        <i class="fa-solid fa-chart-column"></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Grafik</span>
-                    </a>
-                </li>
-                @endif
             </ul>
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                 <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ppemantauan;
 use Illuminate\Http\Request;
 
-class PilihPemantauanController extends Controller
+class KetuartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request) {
-            $ppemantauan['ppemantauan'] = Ppemantauan::where('namapemantauan', 'like', '%' . $request->search . '%')->get();
-        } else {
-            $ppemantauan['ppemantauan'] = Ppemantauan::get();
-        }
-
-
-        return view('admin.dashboard.ppemantauan.index', $ppemantauan);
+        return view('ketuart.dashboard.index');
     }
 
     /**
@@ -31,7 +23,7 @@ class PilihPemantauanController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.ppemantauan.create');
+        //
     }
 
     /**
@@ -42,11 +34,7 @@ class PilihPemantauanController extends Controller
      */
     public function store(Request $request)
     {
-        Ppemantauan::create([
-            'namapemantauan' => $request->namapemantauan,
-        ]);
-
-        return redirect(route('admin.dashboard.pilihpemantauan.index'))->with("OK", "Berhasil ditambahkan.");
+        //
     }
 
     /**
@@ -68,8 +56,7 @@ class PilihPemantauanController extends Controller
      */
     public function edit($id)
     {
-        $ppemantauan['ppemantauan'] = Ppemantauan::findOrFail($id);
-        return view('admin.dashboard.ppemantauan.edit', $ppemantauan);
+        //
     }
 
     /**
@@ -81,12 +68,7 @@ class PilihPemantauanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ppemantauan = Ppemantauan::findOrFail($id);
-        $ppemantauan->update([
-            'namapemantauan' => $request->namapemantauan,
-        ]);
-
-        return redirect()->back()->with("OK", "Berhasil diubah.");
+        //
     }
 
     /**
@@ -97,9 +79,6 @@ class PilihPemantauanController extends Controller
      */
     public function destroy($id)
     {
-        $ppemantauan = Ppemantauan::findOrFail($id);
-        $ppemantauan->delete();
-
-        return redirect()->back()->with("OK", "Bulan berhasil di hapus.");
+        //
     }
 }

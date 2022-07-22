@@ -34,13 +34,13 @@ class IsiKuisonerController extends Controller
      */
     public function store(Request $request)
     {
-        IsiKuisoner::create([
+        $isi_kuisoner = IsiKuisoner::create([
             'kuisoner_id' => $request->kuisoner_id,
             'jawaban' => $request->jawaban,
             'skor' => $request->skor,
         ]);
 
-        return redirect()->back()->with("OK", "Berhasil ditambahkan.");
+        return redirect(route('admin.dashboard.jawaban.show', $isi_kuisoner->kuisoner_id))->with("OK", "Berhasil ditambahkan.");
     }
 
     /**

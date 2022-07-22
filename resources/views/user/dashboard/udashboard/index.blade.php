@@ -132,34 +132,34 @@ $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kart
 <br>
 <br>
 
-@if($all_respon_users != '[]')
 <div class="container">
-    @php
-    $sehat = 0;
-    $belum_sehat = 0;
-    foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
-    $rata_rata_skor = ($all_respon_user->total_skor)/($kuisoner->where('ppemantauan_id', $all_respon_user->ppemantauan_id)->count() - $all_respon_user->skor_nol); $perbandingan = '2';
-    $$perbandingan = '2';
-    $total_skor_user = 0;
-    foreach($all_respon_users as $keluarga_respon){
-    if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
-    $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
-    }
-    }
-    if($rata_rata_skor >= $perbandingan){
-    $sehat++;
-    } else {
-    $belum_sehat++;
-    }
-
-    }
-
-    $total_warga = $sehat + $belum_sehat;
-    $rata_sehat = $sehat / $total_warga * 100;
-    $rata_belum_sehat = $belum_sehat / $total_warga * 100;
-    @endphp
     <div class="row">
-        <div class="col">
+        @if($all_respon_users != '[]')
+        @php
+        $sehat = 0;
+        $belum_sehat = 0;
+        foreach($all_respon_users as $all_respon_user){ //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
+        $rata_rata_skor = ($all_respon_user->total_skor)/($kuisoner->where('ppemantauan_id', $all_respon_user->ppemantauan_id)->count() - $all_respon_user->skor_nol); $perbandingan = '2';
+        $$perbandingan = '2';
+        $total_skor_user = 0;
+        foreach($all_respon_users as $keluarga_respon){
+        if($keluarga_respon->kartu_keluarga_id == $all_respon_user->kartu_keluarga_id){
+        $total_skor_user = $total_skor_user + $keluarga_respon->total_skor;
+        }
+        }
+        if($rata_rata_skor >= $perbandingan){
+        $sehat++;
+        } else {
+        $belum_sehat++;
+        }
+
+        }
+
+        $total_warga = $sehat + $belum_sehat;
+        $rata_sehat = $sehat / $total_warga * 100;
+        $rata_belum_sehat = $belum_sehat / $total_warga * 100;
+        @endphp
+        <div class="col-md-6">
             <?php
             $dataPoints = array(
                 array("label" => "Sehat", "y" => $rata_sehat),
@@ -187,15 +187,32 @@ $respon_users = $all_respon_users->where('kartu_keluarga_id', Auth::user()->kart
 
                 }
             </script>
-
-            <body>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-            </body>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </div>
+        @endif
+
+
+        <div class="col-md-6">
+            <div class="container px-4 mx-auto">
+                <div class="p-6 m-20 bg-white rounded shadow">
+                    {!! $udashboardChart->container() !!}
+                </div>
+            </div>
+
+            <script src="{{ $udashboardChart->cdn() }}"></script>
+            {{ $udashboardChart->script() }}
+        </div>
+
     </div>
+
+
 </div>
-@endif
+
+<body>
+</body>
+
+
 
 @endsection
 
