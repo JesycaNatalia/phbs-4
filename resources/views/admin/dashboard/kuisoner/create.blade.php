@@ -17,7 +17,7 @@
             <h5 class="content-header-title float-left pr-1 mb-0">Kuisoner</h5>
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.kuisoner.show', $id)}}"><i class="fa-solid fa-circle-arrow-left"></i></a>
                     </li>
                     <li class="breadcrumb-item active">Tambah Kuisoner
                     </li>
@@ -48,6 +48,8 @@
                                 <div class="form-group mb-50">
                                     <label class="text-bold-600">Penjelasan</label>
                                     <textarea name="penjelasan" class="form-control" cols="30" rows="10" placeholder="e.g: Cuci tangan dengan sabun adalah kebutuhan"></textarea>
+
+                                    <!-- ppemantauan id itu buat relasi antara pertanyaan sama jenis pemanatauannya dihidden karena ini cuma dibutuhkan sebagai relasi saja -->
                                     <input type="hidden" name="ppemantauan_id" value="{{ request()->id }}">
                                 </div>
                             </div>

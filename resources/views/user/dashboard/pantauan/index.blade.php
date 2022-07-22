@@ -56,14 +56,14 @@
                                     <td>{{ $respon_user->bulan->tahun }}</td>
                                     <td>{{ $respon_user->bulan->bulan }}</td>
                                     <td>{{ $respon_user->total_skor }}</td>
-                                    <td>@if($rata_rata_skor > $perbandingan)
+                                    <td>@if($rata_rata_skor >= $perbandingan)
                                         Sehat
                                         @else
                                         Belum Sehat
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="/dashboard/gform_result/{{$respon_user->bulan_id}}?ppemantauan_id={{$respon_user->ppemantauan_id}}" class="btn btn-info">Detail</a>
+                                        <a href="/dashboard/gform_result/{{$respon_user->bulan_id}}?ppemantauan_id={{$respon_user->ppemantauan_id}}" class="btn btn-info">Rekam Jawaban</a>
                                     </td>
                                 </tr>
                                 @endforeach

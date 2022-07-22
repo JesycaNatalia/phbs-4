@@ -47,12 +47,12 @@
                                 @php
                                 $bulans = session()->get('bulans');
                                 @endphp
-                                @for($i=0; $i< count($bulans); $i++) <tr>
+                                @for($i=0; $i< count($bulans); $i++) <tr> // [Januari, Februari]
                                     <td></td>
                                     <td>{{ $bulans[$i] -> tahun }}</td>
                                     <td>{{ $bulans[$i] -> bulan }}</td>
                                     @php
-                                    $skors = session()->get('skors');
+                                    $skors = session()->get('skors'); // [0 => [0=>2, 1=>1,2=> 2,3 => 2], 1 => [1,0,1,1]]
                                     @endphp
                                     @for($j=0; $j< count($skors[$i]); $j++) <td>{{ $skors[$i][$j] }}</td>
                                         @endfor

@@ -17,7 +17,7 @@
             <h5 class="content-header-title float-left pr-1 mb-0"> Jenis Pemantauan</h5>
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.pilihpemantauan.index')}}"><i class="fa-solid fa-circle-arrow-left"></i></a>
                     </li>
                     <li class="breadcrumb-item active">Tambah Jenis Pemantauan
                     </li>
@@ -39,7 +39,7 @@
                             <div class="form-group mb-50">
                                 <div class="form-group mb-50">
                                     <label class="text-bold-600">Jenis Pemantauan <span class="text-danger">*</span></label>
-                                    <input type="text" name="namapemantauan" id="title" class="form-control" placeholder="e.g: Apakah kamu suka mencuci tangan?" required>
+                                    <input type="text" name="namapemantauan" id="title" class="form-control" placeholder="e.g: Pemantauan Hidup Bersih dan Sehat" required>
                                 </div>
                             </div>
                         </div>

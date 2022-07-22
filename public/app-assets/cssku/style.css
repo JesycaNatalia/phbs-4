@@ -1,9 +1,9 @@
 h3{
-    border-top: 10px solid rgb(79, 79, 79);
+    border-top: 10px solid rgba(52, 57, 66, 0.8);
  }
  .form{
      background-color: rgb(246, 246, 246);
-     box-shadow: 2px 2px 2px rgba(58, 55, 55, 0.8);
+     box-shadow: 2px 2px 2px rgba(91, 111, 142, 0.8);
  }
  .container{
      width: 800px;
@@ -11,3 +11,16 @@ h3{
  .btn{
      float: right;
  }
+ 
+ form{
+    background-color: rgb(246, 246, 246);
+    box-shadow: 2px 2px 2px 2px rgba(91, 111, 142, 0.8);
+ }
+ .btn-1 {
+    padding: 10px 20px;
+    width: 100px;
+}
+
+.pertanyaan{
+    font-size: 17px;
+}

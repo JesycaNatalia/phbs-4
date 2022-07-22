@@ -21,8 +21,8 @@ class PantauanSoalController extends Controller
         $ppemantauan['ppemantauans'] = Ppemantauan::get();
         $bulans = Bulan::get();
         $tahuns = [];
-        foreach($bulans as $index => $bulan){
-            if(!in_array($bulan->tahun, $tahuns)){
+        foreach ($bulans as $index => $bulan) {
+            if (!in_array($bulan->tahun, $tahuns)) {
                 $tahuns[$index] = $bulan->tahun;
             }
         }
@@ -54,15 +54,14 @@ class PantauanSoalController extends Controller
         $pertanyaan = DB::table('kuisoners')->where('pertanyaan', 'LIKE', '%' . $request->pemantauansoal . '%')->first();
 
         // get jawaban dari pertanyaan yang id nya di atas
-
         $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
         // get nama bulan
         $bulans = Bulan::where('tahun', $request->tahun)->get();
         // buat array untuk menyimpan skor satu bulan
-        $skorperbulan = array();
+        $skorperbulan = array(); // []
 
         // buat array untuk menyimpan semua skor 
-        $skors = array();
+        $skors = array(); // []
 
         // $tahun = $request->tahun;
 
@@ -76,16 +75,16 @@ class PantauanSoalController extends Controller
                         function ($query) use ($i) {
                             return $query->where('skor', $i);
                         }
-                    )->where('kuisoner_id', $pertanyaan->id)->count();
-                array_push($skorperbulan, $skor);
+                    )->where('kuisoner_id', $pertanyaan->id)->count(); // 2
+                array_push($skorperbulan, $skor); // [2, 1, 2]
             }
-            $a = $skorperbulan[0] * 3;
-            $b = $skorperbulan[1] * 2;
-            $c = $skorperbulan[2] * 1;
+            $a = $skorperbulan[0] * 3; // 6
+            $b = $skorperbulan[1] * 2; // 2
+            $c = $skorperbulan[2] * 1; // 2
 
             $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
-            array_push($skorperbulan, $ratarata);
-            array_push($skors, $skorperbulan);
+            array_push($skorperbulan, $ratarata); // [2,1,2,2]
+            array_push($skors, $skorperbulan); // [[2,1,2,2],[1,0,2,1]]
             $skorperbulan = array();
         }
         // dd($skors);
@@ -95,6 +94,10 @@ class PantauanSoalController extends Controller
             'bulans' => $bulans,
             'skors' => $skors,
         ]);
+    }
+    public function laporan()
+    {
+        return view('admin.dashboard.pantauansoal.show');
     }
 
     /**
@@ -140,10 +143,5 @@ class PantauanSoalController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function laporan()
-    {
-        return view('admin.dashboard.pantauansoal.show');
     }
 }

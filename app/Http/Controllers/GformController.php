@@ -89,7 +89,7 @@ class GformController extends Controller
         $skor_nol = 0;
         foreach ($jawabans as $jawaban) {
             $total_skor = $total_skor + $jawaban->isi_kuisoner->skor;
-            if($jawaban->isi_kuisoner->skor == '0'){
+            if ($jawaban->isi_kuisoner->skor == '0') {
                 $skor_nol++;
             }
         }

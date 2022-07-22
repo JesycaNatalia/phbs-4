@@ -33,9 +33,7 @@
 			<form action="{{ route('register') }}" method="POST" class="margin-bottom-0">
 				@csrf
 				<div class="form-group m-b-15">
-					<input id="email" type="text"
-						class="form-control form-control-lg @error('email') is-invalid @enderror" name="nama"
-						value="{{ old('nama') }}" required autocomplete="nama" placeholder="Nama" autofocus />
+					<input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" placeholder="Nama" autofocus />
 
 					@error('email')
 					<span class="invalid-feedback" role="alert">
@@ -44,9 +42,7 @@
 					@enderror
 				</div>
 				<div class="form-group m-b-15">
-					<input id="password" type="password"
-						class="form-control form-control-lg @error('password') is-invalid @enderror" name="password"
-						required autocomplete="current-password" placeholder="Password" />
+					<input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" />
 
 					@error('password')
 					<span class="invalid-feedback" role="alert">
@@ -55,32 +51,28 @@
 					@enderror
 				</div>
 
-                <div class="form-group m-b-15">
-					<input type="text"
-						class="form-control form-control-lg" name="nik"
-						required placeholder="Nik" />
+				<div class="form-group m-b-15">
+					<input type="text" class="form-control form-control-lg" name="nik" required placeholder="Nik" />
 				</div>
 
 				<div class="form-group m-b-15">
-					<input type="text"
-						class="form-control form-control-lg" name="no_kk"
-						required placeholder="No KK" />
+					<input type="text" class="form-control form-control-lg" name="no_kk" required placeholder="No KK" />
 				</div>
 
-                <div class="form-group m-b-15">
+				<div class="form-group m-b-15">
 					<select name="jenis_kelamin" class="form-control form-control-lg">
-                        <option value="" disabled selected>Pilih jenis kelamin..</option>
-                        <option value="L">Laki laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
+						<option value="" disabled selected>Pilih jenis kelamin..</option>
+						<option value="L">Laki laki</option>
+						<option value="P">Perempuan</option>
+					</select>
 				</div>
 
-                <div class="form-group m-b-15">
+				<div class="form-group m-b-15">
 					<select name="status_kepala" class="form-control form-control-lg">
-                        <option value="" disabled selected>Pilih status keluarga..</option>
-                        <option value="ya">Kepala</option>
-                        <option value="tidak">Anggota</option>
-                    </select>
+						<option value="" disabled selected>Pilih status keluarga..</option>
+						<option value="ya">Kepala</option>
+						<option value="tidak">Anggota</option>
+					</select>
 				</div>
 
 				<div class="login-buttons">
@@ -89,8 +81,8 @@
 				@if(!request()->routeIs('admin*'))
 				<p>
 					<br />
-					Sudah punya akun? <a href="">Login</a>
-					
+					Sudah punya akun? <a href="/login">Login</a>
+
 				</p>
 				@endif
 				<hr />

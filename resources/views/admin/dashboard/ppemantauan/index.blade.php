@@ -100,7 +100,7 @@
     $(document).on("click", ".deleteButton", function() {
         let id = $(this).val();
 
-        $("#deleteForm").attr("action", "{{ route('admin.dashboard.kuisoner.index') }}/" + id)
+        $("#deleteForm").attr("action", "{{ route('admin.dashboard.pilihpemantauan.index') }}/" + id)
         $("#deleteModal").modal();
     });
 </script>

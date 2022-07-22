@@ -10,6 +10,10 @@
 <!-- BEGIN: Head-->
 
 <head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- <script src="https://kit.fontawesome.com/2290a955fa.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/12151cdf8e.js" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -129,29 +133,29 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                 <li class="nav-item">
                     <a href="{{ route('user.dashboard.dashboard.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-chart-line" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('user.dashboard.informasilingkungan.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-info" style="visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Informasi Lingkungan</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('user.dashboard.rekap.index') }}">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-solid fa-calendar" style="visibility: visible; width: 60px; "></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Rekap Bulanan</span>
                     </a>
                 </li>
 
                 <li class="nav-item has-sub">
                     <a href="#">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
-                        <span class="menu-title text-truncate" data-i18n="Driver">Kuisoner</span>
+                        <i class="fa-regular fa-file-lines" style="visibility: visible; width: 60px;"></i>
+                        <span class="menu-title text-truncate" data-i18n="Driver">Kuisioner</span>
                     </a>
                     <!-- <ul class="menu-content" style="">
                         <li class=""><a class="d-flex align-items-center" href="{{ route('user.dashboard.gform.index') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Tabel Driver">Gform Kuisoner</span></a>
@@ -165,7 +169,7 @@
 
                 <li class="nav-item has-sub">
                     <a href="#">
-                        <i class="menu-livicon livicon-evo-holder" data-icon="notebook" style="visibility: visible; width: 60px;"></i>
+                        <i class="fa-regular fa-file-lines" style="visibility: visible; width: 60px;"></i>
                         <span class="menu-title text-truncate" data-i18n="Driver">Pantauan</span>
                     </a>
                     <ul class="menu-content" style="">
@@ -241,6 +245,8 @@
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="/app-assets/js/scripts/configs/vertical-menu-dark.js"></script>
     <script src="/app-assets/js/core/app-menu.js"></script>
     <script src="/app-assets/js/core/app.js"></script>

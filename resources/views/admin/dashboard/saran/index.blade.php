@@ -46,7 +46,12 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $saran_pemantauan->saran}}</td>
-                                    <td></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ route('admin.dashboard.saranpemantauan.edit', $saran_pemantauan->id) }}" class="btn btn-info">Edit</a>
+                                            <button class="btn btn-danger deleteButton" value="{{ $saran_pemantauan->id }}">Hapus</button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

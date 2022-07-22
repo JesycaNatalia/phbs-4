@@ -69,7 +69,11 @@
                                         @php
                                         $total_skor = $respon_user->total_skor;
                                         $rata_rata_skor = ($respon_user->total_skor)/($kuisoner - $respon_user->skor_nol);
+<<<<<<< HEAD
                                         $perbandingan = '2';
+=======
+                                        $perbandingan = '2 ';
+>>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                                         $sehat = '';
 
                                         if($rata_rata_skor >= $perbandingan ){

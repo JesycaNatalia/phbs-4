@@ -62,7 +62,9 @@ class SaranPemantauanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $saran_pemantauan['saran_pemantauan'] = Saran::findOrFail($id);
+
+        return view('admin.dashboard.saran.edit', $saran_pemantauan);
     }
 
     /**
@@ -74,7 +76,12 @@ class SaranPemantauanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $saran_pemantauan = Saran::findOrFail($id);
+        $saran_pemantauan->update([
+            'saran' => $request->saran,
+        ]);
+
+        return redirect()->back()->with("OK", "Berhasil diubah.");
     }
 
     /**
@@ -85,6 +92,10 @@ class SaranPemantauanController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $saran_pemantauan = Saran::findOrFail($id);
+        $saran_pemantauan->delete();
+
+        return redirect()->back()->with("OK", "Saran berhasil di hapus.");
     }
 }

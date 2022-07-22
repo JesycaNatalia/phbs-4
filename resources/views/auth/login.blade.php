@@ -9,9 +9,9 @@
 	<div class="news-feed">
 		<div class="news-image" style="background-image: url(/assets/img/login-bg/front.png)"></div>
 		<div class="news-caption">
-			<h4 class="caption-title"><b>S</b>PMB</h4>
+			<h4 class="caption-title"><b>P</b>HBS</h4>
 			<p>
-				Sistem Pendaftaran Mahasiswa Baru
+				Sistem Pemantauan Hidup Bersih dan Sehat
 			</p>
 		</div>
 	</div>
@@ -33,9 +33,7 @@
 			<form action="{{ route('login') }}" method="POST" class="margin-bottom-0">
 				@csrf
 				<div class="form-group m-b-15">
-					<input id="email" type="text"
-						class="form-control form-control-lg @error('email') is-invalid @enderror" name="nama"
-						value="{{ old('nama') }}" required autocomplete="nama" placeholder="Nama" autofocus />
+					<input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" placeholder="Nama" autofocus />
 
 					@error('email')
 					<span class="invalid-feedback" role="alert">
@@ -44,9 +42,7 @@
 					@enderror
 				</div>
 				<div class="form-group m-b-15">
-					<input id="password" type="password"
-						class="form-control form-control-lg @error('password') is-invalid @enderror" name="password"
-						required autocomplete="current-password" placeholder="Password" />
+					<input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" />
 
 					@error('password')
 					<span class="invalid-feedback" role="alert">
@@ -83,5 +79,5 @@
 	</div>
 	<!-- end right-container -->
 </div>
-<!-- end login -->
+end login
 @endsection

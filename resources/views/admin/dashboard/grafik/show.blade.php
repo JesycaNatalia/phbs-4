@@ -84,10 +84,10 @@ array("label" => "Desember", "y" => $desember / $total_warga * 100)
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
-                text: "Total Pengisian Kuisoner Perbulan"
+                text: "Total Pengisian Kuisoner Bulan {{ $all_respon_user->bulan->bulan}}"
             },
             subtitles: [{
-                text: "November 2017"
+                text: ""
             }],
             data: [{
                 type: "pie",
