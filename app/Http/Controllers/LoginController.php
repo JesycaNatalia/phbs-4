@@ -30,10 +30,7 @@ class LoginController extends Controller
         if (!Auth::attempt(['nama' => $request->nama, 'password' => $request->password])) {
             return redirect()->back()->with('ERR', 'Password yang Anda masukkan salah.');
         }
-        // $userr = KartuKeluarga::count();
-        // // pengkondisian buat halaman yang muncul setelah login
-        // // variabel chart diinisialisaiin karena di halaman view dashboard itu ada variabel chart
-        // $chart = (new LarapexChart)->areaChart();
+
         $bulan['bulans'] = Bulan::get();
         if (Auth::user()->role == 'admin') {
             return view('admin.dashboard.bulan.index', $bulan);

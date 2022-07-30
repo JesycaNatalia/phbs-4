@@ -20,15 +20,25 @@ class PantauanController extends Controller
     public function index(Request $request)
     {
 
-        if ($request) {
-            $user = User::where('nama', 'like', '%' . $request->search . '%')->get();
-        }
+        $respon_user = ResponUser::with('bulan', 'kartu_keluarga.status_keluarga');
 
+        if ($request->has('search')) {
+            $search = $request->get("search");
+            $respon_users = $respon_user->whereHas('user', function ($query) use ($search) {
+                return $query->where('nama', 'LIKE', "%$search%");
+            })->get();
+        } else {
+            $respon_users = $respon_user->get();
+        }
         $kuisoner = Kuisoner::count();
         $user = User::whereHas('kartu_keluarga')->get();
         $jawaban_user = JawabanUser::with('user')->get();
-        $respon_user['respon_users'] = ResponUser::with('bulan', 'kartu_keluarga.status_keluarga')->get();
-        return view('admin.dashboard.pantauan.index', $respon_user, compact('kuisoner', 'user', 'jawaban_user'));
+        return view('admin.dashboard.pantauan.index', [
+            'respon_users' => $respon_users,
+            'kuisoner' => $kuisoner,
+            'user' => $user,
+            'jawaban_user' => $jawaban_user,
+        ]);
     }
 
     /**

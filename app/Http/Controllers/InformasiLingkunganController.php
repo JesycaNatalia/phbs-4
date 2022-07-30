@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\InformasiLingkunganChart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Kuisoner;
@@ -9,6 +10,7 @@ use App\Models\IsiKuisoner;
 use App\Models\Bulan;
 use App\Models\Saran;
 use App\Models\JawabanUser;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class InformasiLingkunganController extends Controller
 {
@@ -17,7 +19,7 @@ class InformasiLingkunganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(InformasiLingkunganChart $informasiLingkunganChart)
     {
         $list_pemantauan = [
             'Cuci tangan dengan sabun dan air bersih',
@@ -84,9 +86,19 @@ class InformasiLingkunganController extends Controller
         $rekap_user['pertanyaan_min'] = $nilai_rata['data_pemantauan'][array_search(min($nilai_rata['data']), $nilai_rata['data'])];
         $rekap_user['saran'] = $saran->saran ?? 'Tidak ada saran';
 
+        $informasiLingkunganChart = (new LarapexChart)->lineChart()
+            ->setTitle('Sales during 2021.')
+            ->setSubtitle('Physical sales vs Digital sales.')
+            ->addData('Physical sales', [40, 93, 35, 42, 18, 82])
+            ->addData('Digital sales', [70, 29, 77, 28, 55, 45])
+            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+
         // dd($rekap_user);
 
-        return view('user.dashboard.informasilingkungan.index', compact('rekap_user'));
+        return view('user.dashboard.informasilingkungan.index', [
+            'rekap_user' => $rekap_user,
+            'informasiLingkunganChart' => $informasiLingkunganChart
+        ]);
     }
 
     /**

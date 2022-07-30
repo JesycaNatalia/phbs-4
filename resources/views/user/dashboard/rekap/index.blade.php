@@ -14,8 +14,6 @@
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                     <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">Tabel Informasi Lingkungan
-                    </li>
                 </ol>
             </div>
         </div>
@@ -42,15 +40,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for($i = 0; $i < count($rekap_user); $i++)
-                                <tr>
+                                @for($i = 0; $i < count($rekap_user); $i++) <tr>
                                     <td></td>
                                     <td>{{$rekap_user[$i]['tahun']}}</td>
                                     <td>{{$rekap_user[$i]['bulan']}}</td>
                                     <td>{{$rekap_user[$i]['max']}} || {{$rekap_user[$i]['pertanyaan_max']}}</td>
                                     <td>{{$rekap_user[$i]['min']}} || {{$rekap_user[$i]['pertanyaan_min']}}</td>
-                                </tr>
-                                @endfor
+                                    </tr>
+                                    @endfor
                             </tbody>
                         </table>
                     </div>

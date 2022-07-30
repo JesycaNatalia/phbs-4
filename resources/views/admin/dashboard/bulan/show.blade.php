@@ -49,7 +49,7 @@ $dataPoints = array(
                 text: "Total Pengisian Kuisoner Bulan <?php echo $bulan->bulan ?>"
             },
             subtitles: [{
-                text: "November 2017"
+
             }],
             data: [{
                 type: "pie",

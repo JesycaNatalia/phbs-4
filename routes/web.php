@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('gform_result/{id}', [GformController::class, 'show_result']);
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
+        Route::post('getrata2bulan', [DashboardController::class, 'getrata2bulan'])->name('rata2bulan');
         Route::resource('upilihpemantauan', UpilihPemantauanController::class);
         Route::resource('informasilingkungan', InformasiLingkunganController::class);
         Route::resource('rekap', RekapController::class);

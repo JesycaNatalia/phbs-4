@@ -18,7 +18,7 @@
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                     <li class="breadcrumb-item">
-                        <a href="javascript:history.back(-1);">
+                        <a href="javascript:history.back(-4);">
                             <i class="fa fa-arrow-circle-left"></i>
                         </a>
                     </li>

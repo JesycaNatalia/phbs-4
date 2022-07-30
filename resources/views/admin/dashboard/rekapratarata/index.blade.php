@@ -28,10 +28,19 @@
             <div class="card-header">
                 <p class="card-title font-weight-bold">Tabel Laporan</p>
             </div>
+
             <div class="card-body">
                 <div class="row">
+                    <form action="{{route('rekapratarata.index')}}" method="GET">
+                        <div class="input-group mb-3" style="width: 150%;">
+                            <input type="text" class="form-control" placeholder="Search..." name="search" value="">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
                     <div class="col-12">
-                        <table class="table datatable table-responsive" style="width: 100%">
+                        <table class="table table-responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
@@ -42,33 +51,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for($i = 0; $i < count($rekap_pemantauan); $i++)
-                                
-                                <tr>
-                                    <td></td>
+                                @php
+                                ($no=1)
+                                @endphp
+                                @for($i = 0; $i < count($rekap_pemantauan); $i++) <tr>
+                                    <td>{{$no++}}</td>
                                     <td>{{ $rekap_pemantauan[$i]['tahun'] }}</td>
                                     <td>{{ $rekap_pemantauan[$i]['bulan'] }}</td>
                                     <td>
-                                        @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++)
-                                        <table>
+                                        @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++) <table>
                                             <tr>
                                                 <td>{{ $rekap_pemantauan[$i]['data'][$j]['pertanyaan'] }}</td>
                                             </tr>
-                                        </table>
-                                        @endfor
-                                    </td>
-                                    <td>
-                                        @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++)
-                                        <table>
-                                            <tr>
-                                                <td>{{ $rekap_pemantauan[$i]['data'][$j]['rata_rata'] }}</td>
-                                            </tr>
-                                        </table>
-                                        @endfor
-                                    </td>
+                        </table>
+                        @endfor
+                        </td>
+                        <td>
+                            @for($j = 0; $j < count($rekap_pemantauan[$i]['data']); $j++) <table>
+                                <tr>
+                                    <td>{{ $rekap_pemantauan[$i]['data'][$j]['rata_rata'] }}</td>
                                 </tr>
+                                </table>
                                 @endfor
-                            </tbody>
+                        </td>
+                        </tr>
+                        @endfor
+                        </tbody>
                         </table>
                     </div>
                 </div>

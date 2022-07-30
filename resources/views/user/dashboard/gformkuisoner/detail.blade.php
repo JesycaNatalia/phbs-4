@@ -46,7 +46,7 @@
                         <h4>Rata-Rata</h4>
                     </div>
                     <div class="col">
-                        <h4>: {{$respon_users->last()->total_skor / ($kuisoner - $respon_users->last()->skor_nol);}}</h4>
+                        <h4>: {{round($respon_users->last()->total_skor / ($kuisoner - $respon_users->last()->skor_nol),2);}}</h4>
                     </div>
                 </div>
                 <center>

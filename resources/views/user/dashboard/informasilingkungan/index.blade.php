@@ -21,7 +21,7 @@
                         <h4>Rata-Rata Pemantauan Tertinggi</h4>
                     </div>
                     <div class="col">
-                        <h4>: {{$rekap_user['max']}}</h4>
+                        <h4>: {{round($rekap_user['max'], 2)}} || {{$rekap_user['pertanyaan_max']}}</h4>
                     </div>
                 </div>
                 <br>
@@ -30,7 +30,7 @@
                         <h4>Rata-Rata Pemantauan Terendah</h4>
                     </div>
                     <div class="col">
-                        <h4>: {{$rekap_user['min']}} </h4>
+                        <h4>: {{round($rekap_user['min']),2}} || {{$rekap_user['pertanyaan_min']}}</h4>
                     </div>
                 </div>
                 <center>
@@ -44,6 +44,17 @@
             </div>
         </div>
     </div>
+    <!-- <div class="col">
+        <div class="container px-4 mx-auto">
+            <div class="p-6 m-20 bg-white rounded shadow">
+                {!! $informasiLingkunganChart->container() !!}
+            </div>
+        </div>
+
+        <script src="{{ $informasiLingkunganChart->cdn() }}"></script>
+        {{ $informasiLingkunganChart->script() }}
+    </div> -->
+
     <!-- <div class="row">
     <div class="col-12">
         <div class="card">
