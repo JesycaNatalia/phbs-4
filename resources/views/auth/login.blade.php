@@ -33,7 +33,7 @@
 			<form action="{{ route('login') }}" method="POST" class="margin-bottom-0">
 				@csrf
 				<div class="form-group m-b-15">
-					<input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" placeholder="Nama" autofocus />
+					<input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus />
 
 					@error('email')
 					<span class="invalid-feedback" role="alert">

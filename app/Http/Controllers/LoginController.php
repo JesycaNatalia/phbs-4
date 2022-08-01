@@ -21,11 +21,11 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         // buat request nama login sesuai dengan username yang dimasukkan
-        $user = User::where('nama', $request->nama)->first();
+        $user = User::where('username', $request->username)->first();
         if ($user == null) {
-            return redirect()->back()->with('ERR', 'Nama yang Anda masukkan tidak terdaftar.');
+            return redirect()->back()->with('ERR', 'Username yang Anda masukkan tidak terdaftar.');
         }
-        if (!Auth::attempt(['nama' => $request->nama, 'password' => $request->password])) {
+        if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect()->back()->with('ERR', 'Password yang Anda masukkan salah.');
         }
 
@@ -74,6 +74,7 @@ class LoginController extends Controller
         if($checker == null){
             $user = User::create([
                 'nik' => $request->nik,
+                'username' => $request->username,
                 'nama' => $request->nama,
                 'kartu_keluarga_id' => $kartu_keluarga->id,
                 'status_kepala' => $request->status_kepala,

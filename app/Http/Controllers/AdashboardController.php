@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\KartuKeluarga;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
 use App\Models\Kuisoner;
+use App\Models\Bulan;
 use App\Models\User;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
@@ -18,9 +20,12 @@ class AdashboardController extends Controller
      */
     public function index()
     {
-        $user = KartuKeluarga::count();
+
+        $bulan = Bulan::orderBy('id', 'desc')->first();
+        $userr = KartuKeluarga::count();
         $kuisoner = Kuisoner::get();
         $all_respon_users = ResponUser::with('bulan')->get();
+        $itung = ResponUser::where('bulan_id', $bulan->id)->get()->count();
         $januari = 0;
         $februari = 0;
         $maret = 0;
@@ -33,8 +38,7 @@ class AdashboardController extends Controller
         $oktober = 0;
         $november = 0;
         $desember = 0;
-
-        //sehat
+        //belumsehat
         $_januari = 0;
         $_februari = 0;
         $_maret = 0;
@@ -50,123 +54,74 @@ class AdashboardController extends Controller
         foreach ($all_respon_users as $all_respon_user) { //ini logic buat ngitung data dari masing" user yang nantinya dimasukin ke variabel $sehat sama $belum_sehat
             $rata_rata_skor = ($all_respon_user->total_skor) / ($kuisoner->where('ppemantauan_id', $all_respon_user->ppemantauan_id)->count() - $all_respon_user->skor_nol);
             $perbandingan = '2';
-<<<<<<< HEAD
-            if($all_respon_user->bulan->bulan == 'Januari'){
-                if($rata_rata_skor >= $perbandingan){
-=======
             if ($all_respon_user->bulan->bulan == 'Januari') {
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $januari++;
                 } else {
                     $_januari++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Februari') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $februari++;
                 } else {
                     $_februari++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Maret') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $maret++;
                 } else {
                     $_maret++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'April') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $april++;
                 } else {
                     $_april++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Mei') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $mei++;
                 } else {
                     $_mei++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Juni') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $juni++;
                 } else {
                     $_juni++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Juli') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $juli++;
                 } else {
                     $_juli++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Agustus') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $agustus++;
                 } else {
                     $_agustus++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'September') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $september++;
                 } else {
                     $_september++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Oktober') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $oktober++;
                 } else {
                     $_oktober++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'November') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $november++;
                 } else {
                     $_november++;
                 }
             } elseif ($all_respon_user->bulan->bulan == 'Desember') {
-<<<<<<< HEAD
-                if($rata_rata_skor >= $perbandingan){
-=======
                 if ($rata_rata_skor >= $perbandingan) {
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                     $desember++;
                 } else {
                     $_desember++;
@@ -181,7 +136,7 @@ class AdashboardController extends Controller
             ->setXAxis(
                 ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
             );
-        return view('admin.dashboard.dashboard.index', ['chart' => $chart], compact('user', 'kuisoner'));
+        return view('admin.dashboard.dashboard.index', ['chart' => $chart, 'itung' => $itung], compact('userr', 'kuisoner', 'bulan'));
     }
 
     /**
