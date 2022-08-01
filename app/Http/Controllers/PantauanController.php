@@ -17,13 +17,28 @@ class PantauanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $respon_user = ResponUser::with('bulan', 'kartu_keluarga.status_keluarga');
+
+        if ($request->has('search')) {
+            $search = $request->get("search");
+            $respon_users = $respon_user->whereHas('user', function ($query) use ($search) {
+                return $query->where('nama', 'LIKE', "%$search%");
+            })->get();
+        } else {
+            $respon_users = $respon_user->get();
+        }
         $kuisoner = Kuisoner::count();
         $user = User::whereHas('kartu_keluarga')->get();
-        $respon_user['respon_users'] = ResponUser::with('bulan', 'kartu_keluarga.status_keluarga')->get();
         $jawaban_user = JawabanUser::with('user')->get();
-        return view('admin.dashboard.pantauan.index', $respon_user, compact('kuisoner', 'user', 'jawaban_user'));
+        return view('admin.dashboard.pantauan.index', [
+            'respon_users' => $respon_users,
+            'kuisoner' => $kuisoner,
+            'user' => $user,
+            'jawaban_user' => $jawaban_user,
+        ]);
     }
 
     /**
@@ -56,10 +71,10 @@ class PantauanController extends Controller
     public function show($bulan_id, Request $request)
     {
         $user_id = $request->user_id;
-        $keluargas = StatusKeluarga::where('kartu_keluarga_id' , $user_id)->get();
-        foreach($keluargas as $keluarga){
+        $keluargas = StatusKeluarga::where('kartu_keluarga_id', $user_id)->get();
+        foreach ($keluargas as $keluarga) {
             $jawaban_user['jawaban_users'] = JawabanUser::with('isi_kuisoner')->where([['bulan_id', $bulan_id], ['user_id', $keluarga->user_id]])->get();
-            if($jawaban_user['jawaban_users'] != null){
+            if ($jawaban_user['jawaban_users'] != null) {
                 $kuisoner['kuisoners'] = Kuisoner::where('ppemantauan_id', $request->ppemantauan_id)->get();
                 return view('user.dashboard.gformkuisoner.detail_jawaban', $kuisoner, $jawaban_user);
             }

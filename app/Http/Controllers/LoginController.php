@@ -7,6 +7,8 @@ use App\Models\Kuisoner;
 use App\Models\Ppemantauan;
 use Illuminate\Http\Request;
 use App\Models\KartuKeluarga;
+use App\Models\Bulan;
+use App\Models\ResponUser;
 use App\Models\StatusKeluarga;
 use Illuminate\Support\Facades\Auth;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
@@ -29,11 +31,11 @@ class LoginController extends Controller
             return redirect()->back()->with('ERR', 'Password yang Anda masukkan salah.');
         }
 
-        // pengkondisian buat halaman yang muncul setelah login
-        // variabel chart diinisialisaiin karena di halaman view dashboard itu ada variabel chart
-        $chart = (new LarapexChart)->areaChart();
+        $bulan['bulans'] = Bulan::get();
         if (Auth::user()->role == 'admin') {
-            return view('admin.dashboard.dashboard.index',  ['chart' => $chart]);
+            return view('admin.dashboard.bulan.index', $bulan);
+        } else if (Auth::user()->role == 'ketuart') {
+            return view('ketuart.dashboard.index');
         } else {
             // di halaman view dashboard user ga ada variabel yang dipake, makanya jesyy ga inisialisasiin apa apa
             return redirect()->route('user.dashboard.dashboard.index');

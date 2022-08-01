@@ -3,6 +3,8 @@
 @section('title', 'Laporan Pantauan Persoal')
 
 @section('style')
+<link rel="stylesheet" type="text/css" href="/app-assets/cssku/pantauansoal.css">
+
 @endsection
 
 @section('content')
@@ -30,7 +32,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table datatable table-responsive" style="width: 100%">
+                        <table class="table  table-responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
@@ -44,11 +46,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php ($no=1) @endphp
                                 @php
                                 $bulans = session()->get('bulans');
                                 @endphp
-                                @for($i=0; $i< count($bulans); $i++) <tr> // [Januari, Februari]
-                                    <td></td>
+                                @for($i=0; $i< count($bulans); $i++) <tr>
+                                    <!--  // [Januari, Februari] -->
+                                    <td> {{$no++}}</td>
                                     <td>{{ $bulans[$i] -> tahun }}</td>
                                     <td>{{ $bulans[$i] -> bulan }}</td>
                                     @php

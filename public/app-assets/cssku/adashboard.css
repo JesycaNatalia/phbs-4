@@ -1,0 +1,9 @@
+.kotak{
+    background-color: rgb(154, 173, 212);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(94, 86, 86, 0.8);
+}
+
+.stats-info{
+    color: aliceblue;
+}

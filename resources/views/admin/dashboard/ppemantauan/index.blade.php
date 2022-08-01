@@ -32,7 +32,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table datatable table-responsive" style="width: 100%">
+                        <form action="{{route('admin.dashboard.pilihpemantauan.index')}}" method="GET">
+                            <div class="input-group mb-3" style="width: 50%;">
+                                <input type="text" class="form-control" placeholder="Search..." name="search" value="">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
+                        <table class="table table-responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
@@ -41,9 +47,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $no = 1; @endphp
                                 @foreach ($ppemantauan as $ppemantauans)
                                 <tr>
-                                    <td></td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $ppemantauans->namapemantauan }}</td>
                                     <td>
                                         <div class="btn-group btn-group-sm">

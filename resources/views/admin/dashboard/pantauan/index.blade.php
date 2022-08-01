@@ -30,7 +30,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table datatable table-responsive" style="width: 100%">
+                        <form action="{{route('pantauan.index')}}" method="GET">
+                            <div class="input-group mb-3" style="width: 50%;">
+                                <input type="text" class="form-control" placeholder="Search..." name="search" value="">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
+                        <table class="table  table-responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No</th>
@@ -46,13 +52,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php ($no=1) @endphp
                                 @foreach($respon_users as $respon_user)
                                 @php
                                 $total_skor = $respon_user->total_skor;
                                 $perbandingan = ($respon_user->skor_nol * 3) - (($kuisoner * 3) / 2);
                                 @endphp
                                 <tr>
-                                    <td></td>
+                                    <td>{{$no++}}</td>
                                     <td>{{ $respon_user->ppemantauan->namapemantauan }}</td>
                                     <td>
                                         @foreach($respon_user->kartu_keluarga->status_keluarga as $keluarga)
@@ -69,11 +76,7 @@
                                         @php
                                         $total_skor = $respon_user->total_skor;
                                         $rata_rata_skor = ($respon_user->total_skor)/($kuisoner - $respon_user->skor_nol);
-<<<<<<< HEAD
                                         $perbandingan = '2';
-=======
-                                        $perbandingan = '2 ';
->>>>>>> 68686e63146df66fec8192bca19d644aa63fa804
                                         $sehat = '';
 
                                         if($rata_rata_skor >= $perbandingan ){
@@ -85,7 +88,7 @@
                                         {{$sehat}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.dashboard.pantauan.show', $respon_user->bulan->id) }}?user_id={{ $respon_user->kartu_keluarga_id }}&ppemantauan_id={{ $respon_user->ppemantauan_id }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('pantauan.show', $respon_user->bulan->id) }}?user_id={{ $respon_user->kartu_keluarga_id }}&ppemantauan_id={{ $respon_user->ppemantauan_id }}" class="btn btn-info">Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach

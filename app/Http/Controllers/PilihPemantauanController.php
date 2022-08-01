@@ -12,9 +12,15 @@ class PilihPemantauanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ppemantauan['ppemantauan'] = Ppemantauan::get();
+        if ($request) {
+            $ppemantauan['ppemantauan'] = Ppemantauan::where('namapemantauan', 'like', '%' . $request->search . '%')->get();
+        } else {
+            $ppemantauan['ppemantauan'] = Ppemantauan::get();
+        }
+
+
         return view('admin.dashboard.ppemantauan.index', $ppemantauan);
     }
 

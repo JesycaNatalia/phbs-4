@@ -29,7 +29,7 @@
                 <p class="card-title font-weight-bold">Tabel Laporan</p>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.dashboard.pantauansoal.store') }}" method="POST">
+                <form action="{{ route('pantauansoal.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="category" class="form-label">Pilih Kategori Pemantauan</label>
@@ -56,7 +56,7 @@
 
                     <div class="btn-group btn-group-sm">
                         <button type="submit" class="btn btn-primary">Cari</button>
-                        <!-- <a href="{{ route('admin.dashboard.pantauansoal.create') }}" class="btn btn-primary">Kirim</a> -->
+
                     </div>
                 </form>
             </div>

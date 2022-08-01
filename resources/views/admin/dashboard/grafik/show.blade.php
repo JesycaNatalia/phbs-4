@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="card col-xl-11 col-md-6">
+<div class="card ">
     <div class="card-header">
     </div>
     <div class="card-body">
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-@php
+<!-- @php
 $januari = 0;
 $februari = 0;
 $maret = 0;
@@ -86,9 +86,6 @@ array("label" => "Desember", "y" => $desember / $total_warga * 100)
             title: {
                 text: "Total Pengisian Kuisoner Bulan {{ $all_respon_user->bulan->bulan}}"
             },
-            subtitles: [{
-                text: ""
-            }],
             data: [{
                 type: "pie",
                 yValueFormatString: "#,##0.00\"%\"",
@@ -104,7 +101,17 @@ array("label" => "Desember", "y" => $desember / $total_warga * 100)
 <body>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</body>
+</body> -->
+<div class="col">
+    <div class="container px-4 mx-auto">
+        <div class="p-6 m-20 bg-white rounded shadow">
+            {!! $TotalwargaChart->container() !!}
+        </div>
+    </div>
+
+    <script src="{{ $TotalwargaChart->cdn() }}"></script>
+    {{ $TotalwargaChart->script() }}
+</div>
 @endsection
 @section('script')
 @endsection

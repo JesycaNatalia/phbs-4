@@ -12,7 +12,10 @@
             <h5 class="content-header-title float-left pr-1 mb-0">Kuisoner</h5>
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:history.back(-1);">
+                            <i class="fa fa-arrow-circle-left"></i>
+                        </a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.saranpemantauan.index') }}">Tabel
                             Saran</a>

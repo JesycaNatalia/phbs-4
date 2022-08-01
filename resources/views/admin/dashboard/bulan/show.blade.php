@@ -35,6 +35,8 @@ $dataPoints = array(
     array("label" => "Sehat", "y" => $rata_sehat),
     array("label" => "Belum Sehat", "y" => $rata_belum_sehat)
 )
+
+
 ?>
 <script>
     window.onload = function() {

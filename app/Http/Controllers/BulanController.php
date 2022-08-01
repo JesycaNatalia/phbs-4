@@ -6,6 +6,7 @@ use App\Models\Bulan;
 use Illuminate\Http\Request;
 use App\Models\ResponUser;
 use App\Models\Kuisoner;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class BulanController extends Controller
 {
@@ -14,9 +15,15 @@ class BulanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bulan['bulans'] = Bulan::get();
+        if ($request) {
+            $bulan['bulans'] = Bulan::where('bulan', 'like', '%' . $request->search . '%')->get();
+        } else {
+            $bulan['bulans'] = Bulan::get();
+        }
+
+
         return view('admin.dashboard.bulan.index', $bulan);
     }
 

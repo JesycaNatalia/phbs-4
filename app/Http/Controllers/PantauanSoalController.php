@@ -55,6 +55,7 @@ class PantauanSoalController extends Controller
 
         // get jawaban dari pertanyaan yang id nya di atas
         $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
+        $bulann = Bulan::get();
         // get nama bulan
         $bulans = Bulan::where('tahun', $request->tahun)->get();
         // buat array untuk menyimpan skor satu bulan
@@ -88,15 +89,17 @@ class PantauanSoalController extends Controller
             $skorperbulan = array();
         }
         // dd($skors);
-        return redirect()->route('admin.dashboard.pantauansoal.laporan')->with([
+        return redirect()->route('pantauansoal.laporan')->with([
             'pertanyaan' => $pertanyaan->pertanyaan,
             'isi_kuisoner' => $isi_kuisoner,
             'bulans' => $bulans,
             'skors' => $skors,
+            'bulann' => $bulann
         ]);
     }
-    public function laporan()
+    public function laporan(Request $request)
     {
+
         return view('admin.dashboard.pantauansoal.show');
     }
 

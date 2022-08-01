@@ -6,6 +6,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class MonthlyUserChart
 {
+
     protected $chart;
 
     public function __construct(LarapexChart $chart)

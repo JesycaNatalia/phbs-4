@@ -19,6 +19,7 @@ use App\Http\Controllers\RekapRatarataController;
 use App\Http\Controllers\SaranPemantauanController;
 use App\Http\Controllers\InformasiLingkunganController;
 use App\Http\Controllers\RekapController;
+use App\Http\Controllers\KetuartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,32 +47,36 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::prefix('dashboard')->name('admin.dashboard.')->group(function () {
-        Route::resource('kuisoner', KuisonerController::class);
-        Route::get('kuisoner/create/{id}', [KuisonerController::class, 'create']);
-        Route::resource('jawaban', IsiKuisonerController::class);
-        Route::get('jawaban/create/{id}', [IsiKuisonerController::class, 'create']);
-        // Route::resource('grafik', GrafikController::class);
-        Route::resource('bulan', BulanController::class);
-        Route::resource('pantauan', PantauanController::class);
-        Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
-        Route::resource('pantauansoal', PantauanSoalController::class);
-        Route::resource('rekapratarata', RekapRatarataController::class);
-        Route::resource('pilihpemantauan', PilihPemantauanController::class);
-        Route::resource('adashboard', AdashboardController::class);
-        Route::resource('saranpemantauan', SaranPemantauanController::class);
-        Route::get('saranpemantauan/create/{id}', [SaranPemantauanController::class, 'create']);
-        Route::resource('grafik', GrafikController::class);
+        Route::group(['middleware' => ['admin']], function () {
+            Route::resource('kuisoner', KuisonerController::class);
+            Route::get('kuisoner/create/{id}', [KuisonerController::class, 'create']);
+            Route::resource('jawaban', IsiKuisonerController::class);
+            Route::get('jawaban/create/{id}', [IsiKuisonerController::class, 'create']);
+            // Route::resource('grafik', GrafikController::class);
+            Route::resource('bulan', BulanController::class);
+            Route::resource('pilihpemantauan', PilihPemantauanController::class);
+            Route::resource('adashboard', AdashboardController::class);
+            Route::resource('saranpemantauan', SaranPemantauanController::class);
+            Route::get('saranpemantauan/create/{id}', [SaranPemantauanController::class, 'create']);
+            Route::resource('grafik', GrafikController::class);
+        });
     });
+
+    Route::resource('rekapratarata', RekapRatarataController::class);
+    Route::get('/pantauansoal/laporan', [PantauanSoalController::class, 'laporan'])->name('pantauansoal.laporan');
+    Route::resource('pantauansoal', PantauanSoalController::class);
+    Route::resource('pantauan', PantauanController::class);
+    Route::resource('ketuartdashboard', KetuartController::class)->middleware('ketuart');
 
     Route::prefix('dashboard')->name('user.dashboard.')->group(function () {
         Route::resource('gform', GformController::class);
         Route::get('gform_result/{id}', [GformController::class, 'show_result']);
         Route::resource('laporankuisoner', UlaporanKuisonerController::class);
         Route::resource('dashboard', DashboardController::class);
+        Route::post('getrata2bulan', [DashboardController::class, 'getrata2bulan'])->name('rata2bulan');
         Route::resource('upilihpemantauan', UpilihPemantauanController::class);
         Route::resource('informasilingkungan', InformasiLingkunganController::class);
         Route::resource('rekap', RekapController::class);
+        Route::get('/getPemantauan/{id}', [GformController::class, 'getPemantauan']);
     });
-
-    Route::get('/getPemantauan/{id}', [GformController::class, 'getPemantauan']);
 });

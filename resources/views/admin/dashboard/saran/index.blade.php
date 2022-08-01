@@ -9,12 +9,15 @@
 <div class="content-header row">
     <div class="content-header-left col-12 mb-2 mt-1">
         <div class="breadcrumbs-top">
-            <h5 class="content-header-title float-left pr-1 mb-0">Rekap Rata-Rata Pemantauan</h5>
+            <h5 class="content-header-title float-left pr-1 mb-0">Data Saran</h5>
             <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:history.back(-1);">
+                            <i class="fa fa-arrow-circle-left"></i>
+                        </a>
                     </li>
-                    <li class="breadcrumb-item active">Laporan Bulanan
+                    <li class="breadcrumb-item active">Tabel Data Saran
                     </li>
                 </ol>
             </div>

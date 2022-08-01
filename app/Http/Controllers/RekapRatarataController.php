@@ -15,26 +15,30 @@ class RekapRatarataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $list_pemantauan = [
-          'Cuci tangan dengan sabun dan air bersih',
-          'Menggunakan air bersih',
-          'Menggunakan jamban sehat',
-          'Memberantas jentik nyamuk',
-          'Konsumsi buah dan sayur',
-          'Melakukan aktivitas fisik setiap hari',
-          'Tidak merokok di dalam rumah',
+            'Cuci tangan dengan sabun dan air bersih',
+            'Menggunakan air bersih',
+            'Menggunakan jamban sehat',
+            'Memberantas jentik nyamuk',
+            'Konsumsi buah dan sayur',
+            'Melakukan aktivitas fisik setiap hari',
+            'Tidak merokok di dalam rumah',
         ];
         // get nama bulan
-        $bulans = Bulan::get();
+        if ($request) {
+            $bulans = Bulan::where('bulan', 'like', '%' . $request->search . '%')->get();
+        } else {
+            $bulans = Bulan::get();
+        }
         $rekap_pemantauan = array();
         foreach ($bulans as $index => $bulan) {
-            for($j=0; $j<count($list_pemantauan); $j++){
+            for ($j = 0; $j < count($list_pemantauan); $j++) {
                 $pertanyaan = Kuisoner::where('pertanyaan', 'LIKE', '%' . $list_pemantauan[$j] . '%')->first();
                 $isi_kuisoner = IsiKuisoner::where('kuisoner_id', $pertanyaan->id)->get();
                 $skorperbulan = array();
-        
+
                 // cek skor dengan perulangan
                 for ($i = 3; $i >= 1; $i--) {
                     $skor = JawabanUser::where('bulan_id', $bulan->id)
@@ -49,7 +53,7 @@ class RekapRatarataController extends Controller
                 $a = $skorperbulan[0] * 3;
                 $b = $skorperbulan[1] * 2;
                 $c = $skorperbulan[2] * 1;
-    
+
                 $ratarata = ($a + $b + $c) / array_sum($skorperbulan);
                 array_push($skorperbulan, $ratarata);
                 $skorperbulan = array();
@@ -59,8 +63,13 @@ class RekapRatarataController extends Controller
                 $rekap_pemantauan[$index]['data'][$j]['rata_rata'] = $ratarata;
             }
         }
+
+
         // dd($rekap_pemantauan);
-        return view('admin.dashboard.rekapratarata.index', compact('rekap_pemantauan'));
+        return view('admin.dashboard.rekapratarata.index', [
+            'bulans' => $bulans,
+            'rekap_pemantauan' => $rekap_pemantauan
+        ]);
     }
 
     /**
